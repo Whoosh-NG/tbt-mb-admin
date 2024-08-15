@@ -1,0 +1,19 @@
+.spinit {
+  border: 5px solid var(--Grey2);
+  border-top: 5px solid var(--Grey6);
+  border-radius: 50%;
+  width: 1.9em;
+  height: 1.9em;
+  margin: 0 auto;
+  animation: spin 01s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

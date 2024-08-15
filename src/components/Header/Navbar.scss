@@ -1,0 +1,90 @@
+.navbar h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  color: var(--Grey1);
+}
+.navContainer {
+  padding-left: 0;
+  padding-right: 4rem;
+}
+.navB {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.navbar {
+  position: relative;
+  // box-shadow: 0px 4px 10px 0px #0000000d;
+  background: var(--white);
+  margin-bottom: 2em;
+  height: 106px;
+  width: 100%;
+
+  header {
+    .notifs {
+      position: relative;
+      font-size: 1.2rem;
+      font-weight: 700;
+      small {
+        position: absolute;
+        top: -6px;
+        right: 0;
+        background: var(--negative);
+        color: var(--white);
+        // font-size: 10px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        width: 0.9em;
+        height: 0.9em;
+      }
+    }
+
+    .userInitials {
+      font-size: 1.5em;
+      // color: var(--white);
+      // background: var(--pryColor);
+      font-weight: 600;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+
+      text-transform: uppercase;
+      h4 {
+        margin: 0;
+        color: var(--white);
+      }
+    }
+  }
+
+  .notifPopUp {
+    position: absolute;
+    width: 40%;
+    top: 90%;
+    border-radius: 8px;
+    border: 1px solid var(--grey-grey-5, #e5e7ef);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.16);
+    z-index: 5;
+    h3 {
+      padding: 0.5em 1em;
+      font-size: 1.4rem;
+    }
+  }
+  .userPopUp {
+    position: absolute;
+    top: 65%;
+    right: 2%;
+    border-radius: 8px;
+    border: 1px solid var(--grey-grey-5, #e5e7ef);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.16);
+    z-index: 5;
+    h3 {
+      padding: 0.5em 1em;
+      font-size: 1.4rem;
+    }
+  }
+}

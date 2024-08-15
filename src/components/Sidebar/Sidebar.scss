@@ -1,0 +1,54 @@
+.sidebarContainer {
+  background: var(--white);
+  // height: 100vh;
+  height: 100%;
+  padding-bottom: 9em;
+  // overflow-y: scroll;
+
+  // .sidebar {
+  //   ul {
+  //     margin-top: 1em;
+  //     h5 {
+  //       font-size: 1rem;
+  //       color: var(--Grey3);
+  //       margin-top: 2em;
+  //       margin-bottom: 1em;
+  //     }
+  //   }
+  // }
+}
+.sideC {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.sideC h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: -0.5px;
+  color: #4f4f4f80;
+  margin-bottom: -1.5rem;
+  padding-top: 4rem;
+}
+.brandL {
+  padding-top: 0.2rem;
+  padding-left: 2rem;
+}
+.sideInfo {
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+  gap: 0.3rem;
+}
+.sideInfo h5 {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: -0.0024em;
+}
+.sideInfo h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  letter-spacing: -0.0008em;
+}

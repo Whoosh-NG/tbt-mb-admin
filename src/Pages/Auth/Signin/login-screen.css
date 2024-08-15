@@ -1,0 +1,153 @@
+.categories {
+  min-height: 100vh;
+}
+
+.purple {
+  background: #400080;
+  padding: 2rem 3rem;
+}
+.purple h2 {
+  color: #fff;
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.9375rem;
+}
+
+.purpleImg {
+  padding: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+.purple h3 {
+  color: #ffa24f;
+  padding-bottom: 0.2rem;
+  font-weight: 800;
+  line-height: 1.9375rem;
+}
+.purple h4 {
+  color: #fff;
+  width: 85%;
+  padding-bottom: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+/* .white {
+  padding: 2.5rem;
+} */
+
+.whiteImg {
+  display: flex;
+  justify-content: flex-end;
+}
+.categoryS {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+
+.categoryS h1 {
+  font-size: 1.625rem;
+  padding-bottom: 0.7rem;
+  font-weight: 900;
+  line-height: 1.9375rem;
+}
+
+.categoryS h5 span {
+  color: #e98f55;
+  font-weight: 700;
+}
+
+.categoryS h5 {
+  font-size: 1.25rem;
+  color: #4f4f4f;
+  /* padding-bottom: 3rem; */
+  font-weight: 300;
+  line-height: 1.5rem;
+}
+.inputCheck {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 2rem;
+}
+.inputCheck h6 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.10000000149011612px;
+  color: #2b2b43;
+}
+.white .having {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3rem;
+}
+.white .having h5 {
+  font-size: 1rem;
+  color: #4f4f4f;
+  font-weight: 700;
+  line-height: 1.1875rem;
+}
+.white .having h5 span {
+  color: #ffa24f;
+}
+.mm {
+  margin-top: 0;
+}
+.categories small {
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 0.875rem;
+  color: #4f4f4f;
+  padding-top: 0.4rem;
+}
+.Btns {
+  padding-top: 5rem;
+}
+
+/* @media screen and (max-width: 1114px) {
+  .white .categoryS {
+    display: flex;
+    flex-direction: column;
+    padding: 7rem 1rem;
+  }
+} */
+@media screen and (max-width: 834px) {
+  /* .categories {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column-reverse;
+  } */
+  .categoryS h1,
+  .categoryS h5 {
+    text-align: center;
+  }
+
+  .white .categoryS {
+    padding-top: 0;
+  }
+  .purple {
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .white .categoryS {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .categoryS h1 {
+    font-size: 1.25rem;
+    padding-bottom: 0px;
+  }
+
+  .categoryS h5 {
+    font-size: 0.75rem;
+  }
+
+  .white {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

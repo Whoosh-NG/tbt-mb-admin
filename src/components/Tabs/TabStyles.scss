@@ -1,0 +1,38 @@
+.employerDashboard {
+  background-color: var(--white);
+  position: relative;
+
+  .tabs {
+    border-right: solid 1px var(--Grey4);
+    // padding: 2em;
+
+    .tabTitle {
+      cursor: pointer;
+      // padding-left: 1em;
+
+      h4 {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      @media screen and (max-width: 900px) {
+        .active,
+        .notActive {
+          padding: 15px;
+          display: flex;
+          // align-items: center;
+          // justify-content: center;
+        }
+      }
+    }
+
+    ul {
+      h5 {
+        font-size: 1rem;
+        color: var(--Grey3);
+        margin-top: 2em;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
