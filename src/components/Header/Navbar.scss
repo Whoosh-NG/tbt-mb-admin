@@ -1,24 +1,7 @@
-.navbar h1 {
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 1.75rem;
-  color: var(--Grey1);
-}
-.navContainer {
-  padding-left: 0;
-  padding-right: 4rem;
-}
-.navB {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
 .navbar {
   position: relative;
-  // box-shadow: 0px 4px 10px 0px #0000000d;
+  padding: 1em 0;
   background: var(--white);
-  margin-bottom: 2em;
-  height: 106px;
   width: 100%;
 
   header {

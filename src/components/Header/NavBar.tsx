@@ -1,6 +1,6 @@
 import './Navbar.scss';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
-import userIcon from '@/assets/adminAvatar.png';
+import userIcon from '@/assets/noAvatar.png';
 import Modal from '../popUps/Modal';
 import { useAppSelector } from '@/Redux/reduxHooks';
 import { selectGlobal, selectPageName } from '@/Redux/Features/globalSlice';

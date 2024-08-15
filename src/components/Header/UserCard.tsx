@@ -14,7 +14,7 @@ const UserCard = () => {
   return (
     <>
       <section className='flex flex-col gap-4 text-center bg-white rounded-xl p-4 shadow-xl'>
-        <h3 className='text-pryColor'>Local Venda Admin</h3>
+        <h3 className='text-pryColor'>WhooshNG Admin</h3>
         <figure className='w-[60px] h-[60px] mx-auto'>
           <img src={userIcon} alt='' />
         </figure>

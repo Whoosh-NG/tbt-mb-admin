@@ -1,60 +1,51 @@
+import { Dispatch, SetStateAction } from 'react';
+import BrandLogo from '../BrandLogo';
 import './Sidebar.scss';
 import { SidebarData } from './SidebarData';
 import { NavLink } from 'react-router-dom';
+import { GrUnorderedList } from 'react-icons/gr';
 
-import BrandLogo from '../BrandLogo';
-// import userIcon from '@/assets/userIcon.png';
-
-const Sidebar = () => {
+const Sidebar = ({
+  toggleSideBar,
+  setToggleSideBar,
+}: {
+  toggleSideBar: boolean;
+  setToggleSideBar: Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
-    <main className=' sidebarContainer px-1 px-md-2 px-xl-4 '>
-      <div className='brandL w-5/12 md:w-10/12 flex items-center'>
+    <main className=' sidebarContainer'>
+      <div className='mb-5 mt-3 flex flex-col gap-3 w-10 h-10 hover:bg-gray-300 p-2 rounded-full items-start '>
+        <button onClick={() => setToggleSideBar(!toggleSideBar)} className=''>
+          <GrUnorderedList className='text-grey-300' size={25} />
+        </button>
+      </div>
+      <div className=' w-10 h-10 flex items-center'>
         <BrandLogo />
       </div>
-      <article className='sideC w-full mx-auto flex flex-col'>
-        <h3>SUPER ADMIN</h3>
-        <ul>
-          {SidebarData.map((tab) => (
-            <li key={tab.id} className='my-9'>
-              {' '}
-              <NavLink
-                to={tab.url}
-                className={({ isActive }) =>
-                  isActive ? 'sidebarActive  ' : 'sidebarNotActive  '
-                }
-              >
-                <hgroup className=' flex gap-2 items-center '>
-                  <h4>{tab.icon} </h4>
-                  <h4>{tab.title}</h4>
-                </hgroup>
-              </NavLink>{' '}
-            </li>
+      <article className=' w-full mx-auto flex flex-col'>
+        <ul className='flex flex-col gap-2'>
+          {SidebarData.map(({ id, url, title, icon }) => (
+            <NavLink
+              key={id}
+              to={url}
+              className={({ isActive }) =>
+                isActive && toggleSideBar
+                  ? 'sidebarActive !w-full'
+                  : !isActive && toggleSideBar
+                  ? 'sidebarNotActive !w-full'
+                  : isActive
+                  ? 'sidebarActive'
+                  : 'sidebarNotActive '
+              }
+            >
+              <hgroup className=' flex gap-2 items-center '>
+                <h4>{icon} </h4>
+                {toggleSideBar && <h4>{title}</h4>}
+              </hgroup>
+            </NavLink>
           ))}
         </ul>
-        {/* <li className='sideInfo'>
-          <div>
-            <img src={userIcon} alt='' />
-          </div>
-          <div>
-            <h5>Wisdom Williams</h5>
-            <h6>wisdomwills@rocketmail.com</h6>
-          </div>
-        </li> */}
-
-        {/* <li className="sidebarNotActive " onClick={() => handleShow("logout")}>
-          <hgroup className="flex gap-2 items-center ">
-            <h4 className="me-2">
-              {" "}
-              <LogoutIcon />
-            </h4>
-            <h4 className=""> Logout </h4>
-          </hgroup>
-        </li> */}
       </article>
-
-      {/* {toggle["logout"] && (
-        <Logout id="logout" close={() => handleShow("logout")} />
-      )} */}
     </main>
   );
 };

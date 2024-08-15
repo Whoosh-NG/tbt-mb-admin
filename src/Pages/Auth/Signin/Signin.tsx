@@ -40,7 +40,7 @@ const Signin = () => {
           success: true,
           message: res.data?.message,
         };
-        const userToken = res?.data?.data?.access.token;
+        const userToken = res?.data?.data?.access_token;
         const userId = res?.data?.data?.id;
         const userEmail = res?.data?.data?.email;
         const userName = res?.data?.data?.full_name;
@@ -56,6 +56,7 @@ const Signin = () => {
         navigate('/');
       })
       .catch((err) => {
+        console.log(err);
         const erroMessage = {
           success: false,
           message:
