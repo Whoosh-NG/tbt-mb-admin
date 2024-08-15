@@ -17,7 +17,7 @@ const App = () => {
     AOS.init();
   }, [AOS]);
 
-  useIdleTimeout(logoutUser, 300000);
+  // useIdleTimeout(logoutUser, 300000);
 
   return (
     <main className='App'>

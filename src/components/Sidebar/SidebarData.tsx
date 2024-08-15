@@ -16,7 +16,7 @@ export const SidebarData = [
     url: '/riders',
   },
   {
-    id: 'tab2',
+    id: 'tab3',
     icon: <RiAdminFill />,
     title: 'Administrators',
     url: '/administrators',

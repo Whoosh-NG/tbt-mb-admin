@@ -37,7 +37,7 @@ const NavBar = () => {
       </header>
 
       {toggle['user'] && (
-        <Modal id='user' className='userPopUp w-full lg:w-[40%] m-3'>
+        <Modal id='user' className='userPopUp w-full md:w-6/12 lg:w-4/12 m-3'>
           <UserCard />
         </Modal>
       )}

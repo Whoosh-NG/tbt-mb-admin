@@ -11,7 +11,6 @@ import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { Link, useNavigate } from 'react-router-dom';
 import BrandLogo from '@/components/BrandLogo';
 import { userAuthData } from '@/Redux/Features/userAuthSlice';
-import { useAuthHook } from '@/Hooks/authHook';
 import ErrorMessage from '@/components/ErrorMessage';
 import toast from 'react-hot-toast';
 
@@ -23,7 +22,7 @@ const initialValues = {
 const Signin = () => {
   const dispatch = useAppDispatch();
   const { setCookies } = useCookies();
-  const { setSession } = useAuthHook();
+
   const navigate = useNavigate();
   const {
     errors: customErrors,
@@ -46,8 +45,6 @@ const Signin = () => {
         const userName = res?.data?.data?.full_name;
 
         setCookies('whooshNgToken', userToken);
-        const tokenExpires = new Date();
-        setSession(tokenExpires);
 
         toast.success(successMessage.message);
 
