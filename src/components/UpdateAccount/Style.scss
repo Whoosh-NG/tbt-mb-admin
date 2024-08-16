@@ -1,0 +1,16 @@
+.updateAccount {
+  background: var(--white);
+  border-radius: 10px;
+
+  .titleCard {
+    h3 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      color: var(--Grey3);
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+  }
+}

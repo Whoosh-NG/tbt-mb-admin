@@ -93,11 +93,7 @@ export const apiSLice = createApi({
 
     // === Riders Start ===
     getAllRiders: builder.query({
-      query: (formData) => ({
-        url: `/admin/rider`,
-        method: 'POST',
-        body: formData,
-      }),
+      query: () => `/admin/rider`,
 
       providesTags: [{ type: 'Admin', id: 'AdminList' }],
     }),

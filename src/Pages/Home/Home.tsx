@@ -1,7 +1,9 @@
 import { useGetAllAdminQuery } from '@/api/apiSlice';
+import useUpdatePageName from '@/Hooks/useUpdatePageName';
 
 const Home = () => {
   const { data } = useGetAllAdminQuery({});
+  useUpdatePageName('Home');
 
   console.log(data);
   return (

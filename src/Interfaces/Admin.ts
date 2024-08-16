@@ -7,16 +7,14 @@ export interface AddNewAdminError {
 }
 
 export interface AddAdminData {
-  firstName: string;
-  lastName: string;
+  full_name: string;
   email: string;
   password: string;
   adminRole: string;
 }
 export interface updateAdminData {
   formData: {
-    firstName: string;
-    lastName: string;
+    full_name: string;
     email: string;
     // password: string;
     adminRole: string;
@@ -26,12 +24,9 @@ export interface updateAdminData {
 export interface IAdminData {
   id: number;
   userId: number;
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  };
+  full_name: string;
+  email: string;
+  phone_number: string;
   adminRole: string;
 }
 

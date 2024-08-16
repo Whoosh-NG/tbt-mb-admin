@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <main className='navbar flex items-center '>
       <header className='  w-full flex container justify-between items-center'>
-        <h1>{name}</h1>
+        <h2>{name}</h2>
         <button
           onClick={() => handleShow('user')}
           className='flex items-center gap-2 cursor-pointer'
