@@ -13,7 +13,7 @@ const NavBar = () => {
   const name = useAppSelector(selectPageName);
 
   return (
-    <main className='navbar flex items-center '>
+    <main className='navbar flex items-center border-b border-Grey5'>
       <header className='  w-full flex container justify-between items-center'>
         <h2>{name}</h2>
         <button

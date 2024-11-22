@@ -1,4 +1,4 @@
-import Logo from '@/assets/whooshLogo.svg';
+import Logo from '@/assets/tbtLogo.png';
 import { Link } from 'react-router-dom';
 
 const BrandLogo = ({ className }: { className?: string }) => {

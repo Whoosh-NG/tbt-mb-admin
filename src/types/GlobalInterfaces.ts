@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export interface TabProps {
   id: string;
@@ -56,4 +56,13 @@ export interface IServerResponse {
 
 export interface IServerError {
   data: { message: string };
+}
+
+export interface IColData {
+  selector?: (row: any) => string;
+  cell?: (row: any) => ReactNode;
+  ignoreRowClick?: boolean;
+  allowOverflow?: boolean;
+  button?: boolean;
+  [key: string]: string | number | any;
 }

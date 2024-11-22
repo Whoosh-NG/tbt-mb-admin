@@ -1,4 +1,4 @@
-import { TabProps } from '@/Interfaces/GlobalInterfaces';
+import { TabProps } from "@/types/GlobalInterfaces";
 
 const TabTitle = ({
   id,
@@ -21,8 +21,8 @@ const TabTitle = ({
       onClick={() => handTabSwitch(id)}
       className={activeTab === id ? activeClass : notActiveClass}
     >
-      <hgroup id={id} className={icon ? 'flex gap-3 items-center' : ''}>
-        {icon && <h4 className=''>{icon}</h4>}
+      <hgroup id={id} className={icon ? "flex items-center gap-3" : ""}>
+        {icon && <h4 className="">{icon}</h4>}
         <h4>{title}</h4>
       </hgroup>
     </div>

@@ -4,11 +4,11 @@ import * as API from '@/api/apis';
 import { useFormik } from 'formik';
 import Spinner from '@/spinner/Spinner';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-import BrandLogo from '@/components/BrandLogo';
-import ErrorMessage from '@/components/ErrorMessage';
+import BrandLogo from '@/components/ui/BrandLogo';
+import ErrorMessage from '@/components/ui/ErrorMessage';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import GoBackBtn from '@/components/GoBackBtn';
+import GoBackBtn from '@/components/ui/GoBackBtn';
 
 const initialValues = {
   email: '',

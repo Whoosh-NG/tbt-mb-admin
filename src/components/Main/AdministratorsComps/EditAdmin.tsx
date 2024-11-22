@@ -1,15 +1,15 @@
-import { useGlobalHooks } from '@/Hooks/globalHooks';
-import { AddNewAdminError, AdminProps, IAdminData } from '@/Interfaces/Admin';
-import { selectAllAdmin } from '@/Redux/Features/userDatasSlice';
-import { useAppSelector } from '@/Redux/reduxHooks';
-import { useEditAdminMutation } from '@/api/apiSlice';
-import ErrorMessage from '@/components/ErrorMessage';
-import PopUp from '@/components/popUps/PopUp';
-import Spinner from '@/spinner/Spinner';
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
+import { useGlobalHooks } from "@/Hooks/globalHooks";
+import { AddNewAdminError, AdminProps, IAdminData } from "@/types/Admin";
+import { selectAllAdmin } from "@/Redux/Features/userDatasSlice";
+import { useAppSelector } from "@/Redux/reduxHooks";
+import { useEditAdminMutation } from "@/api/apiSlice";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import PopUp from "@/components/popUps/PopUp";
+import Spinner from "@/spinner/Spinner";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
-import { BsX } from 'react-icons/bs';
+import { BsX } from "react-icons/bs";
 
 const EditAdmin: React.FC<AdminProps & { adminId: string | number }> = ({
   id,
@@ -42,10 +42,10 @@ const EditAdmin: React.FC<AdminProps & { adminId: string | number }> = ({
 
     try {
       const rsp = await updateAdmin({ formData: formData, id: adminId });
-      if ('data' in rsp) {
+      if ("data" in rsp) {
         toast.success(rsp.data.message);
         handleShow(id);
-      } else if ('error' in rsp && 'data' in rsp.error) {
+      } else if ("error" in rsp && "data" in rsp.error) {
         const er = (rsp?.error as AddNewAdminError)?.data?.message;
         setErrors({
           error: true,
@@ -60,49 +60,49 @@ const EditAdmin: React.FC<AdminProps & { adminId: string | number }> = ({
   return (
     <PopUp id={id}>
       <form
-        className='newPop w-11/12 md:w-5/12 mx-auto py-5 animate__animated animate__bounceIn'
+        className="newPop animate__animated animate__bounceIn mx-auto w-11/12 py-5 md:w-5/12"
         onSubmit={handleSubmit}
       >
-        <article className='w-10/12 mx-auto flex items-center justify-between '>
-          <h4 className='font-bold'>Edit Administrator</h4>
+        <article className="mx-auto flex w-10/12 items-center justify-between">
+          <h4 className="font-bold">Edit Administrator</h4>
           <div>
-            <button onClick={close} className='close'>
+            <button onClick={close} className="close">
               <BsX size={20} />
             </button>
           </div>
         </article>
-        <section className='w-10/12 mx-auto my-3 flex flex-wrap gap-2'>
-          <article className='mb-3 inputWrapper'>
-            <label htmlFor='firstName'>First Name</label>
+        <section className="mx-auto my-3 flex w-10/12 flex-wrap gap-2">
+          <article className="inputWrapper mb-3">
+            <label htmlFor="firstName">First Name</label>
             <input
-              type='text'
-              placeholder='Enter full name'
-              className='form-control'
-              name='firstName'
+              type="text"
+              placeholder="Enter full name"
+              className="form-control"
+              name="firstName"
               defaultValue={formData.firstName}
               onChange={handleChange}
               required
             />
           </article>
-          <article className='mb-3 inputWrapper'>
-            <label htmlFor='lastName'>Last Name</label>
+          <article className="inputWrapper mb-3">
+            <label htmlFor="lastName">Last Name</label>
             <input
-              type='text'
-              placeholder='Enter full name'
-              className='form-control'
-              name='lastName'
+              type="text"
+              placeholder="Enter full name"
+              className="form-control"
+              name="lastName"
               defaultValue={formData.lastName}
               onChange={handleChange}
               required
             />
           </article>
-          <article className='mb-3 inputWrapper'>
-            <label htmlFor='email'>Email</label>
+          <article className="inputWrapper mb-3">
+            <label htmlFor="email">Email</label>
             <input
-              type='email'
-              placeholder='Enter email'
-              className='form-control'
-              name='email'
+              type="email"
+              placeholder="Enter email"
+              className="form-control"
+              name="email"
               defaultValue={formData.email}
               onChange={handleChange}
               required
@@ -110,16 +110,16 @@ const EditAdmin: React.FC<AdminProps & { adminId: string | number }> = ({
           </article>
         </section>
 
-        <article className='w-10/12 mx-auto flex flex-wrap items-center gap-3'>
-          <button className='outline-btn !flex-1' type='button' onClick={close}>
+        <article className="mx-auto flex w-10/12 flex-wrap items-center gap-3">
+          <button className="outline-btn !flex-1" type="button" onClick={close}>
             Cancel
           </button>
-          <button className='main-btn !flex-1' type='submit'>
-            {isLoading ? <Spinner /> : 'Save Changes'}
+          <button className="main-btn !flex-1" type="submit">
+            {isLoading ? <Spinner /> : "Save Changes"}
           </button>
         </article>
 
-        <div className='flex justify-center my-2'>
+        <div className="my-2 flex justify-center">
           {errors.error && <ErrorMessage message={errors.errMessage} />}
         </div>
       </form>

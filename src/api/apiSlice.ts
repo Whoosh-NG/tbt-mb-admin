@@ -1,18 +1,19 @@
-import { AddAdminData, updateAdminData } from '@/Interfaces/Admin';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import Cookies from 'js-cookie';
+import { AddAdminData, updateAdminData } from "@/types/Admin";
+import { queryBuilder } from "@/Utils";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 const customBaseQuery = fetchBaseQuery({
-  baseUrl: 'https://apiv2.staging.whooshing.xyz/api/v2',
+  baseUrl: "https://tbt-agro.whooshing.xyz/api/v1",
 
   prepareHeaders: (headers) => {
     // Get your token from wherever you have it stored
-    const userToken = Cookies.get('whooshNgToken');
+    const userToken = Cookies.get("whooshNgToken");
 
     if (userToken) {
       // Set the 'Authorization' header with the token
-      headers.set('Authorization', `Bearer ${userToken}`);
-      headers.set('x-access-token', userToken);
+      headers.set("Authorization", `Bearer ${userToken}`);
+      headers.set("x-access-token", userToken);
     }
 
     return headers;
@@ -23,23 +24,23 @@ export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
   tagTypes: [
-    'Admin',
-    'Store',
-    'StoreList',
-    'List',
-    'Products',
-    'Withdrawal',
-    'WithdrawalList',
-    'Ads',
-    'AdsList',
-    'Users',
-    'UsersList',
-    'Faqs',
-    'FaqsList',
-    'Categs',
-    'CategsList',
-    'HelpCategs',
-    'HelpCategsList',
+    "Admin",
+    "Store",
+    "StoreList",
+    "List",
+    "Products",
+    "Withdrawal",
+    "WithdrawalList",
+    "Ads",
+    "AdsList",
+    "Users",
+    "UsersList",
+    "Faqs",
+    "FaqsList",
+    "Categs",
+    "CategsList",
+    "HelpCategs",
+    "HelpCategsList",
   ],
 
   // All endpoints
@@ -47,57 +48,71 @@ export const apiSLice = createApi({
     // === Admin start ===
     getAllAdmin: builder.query({
       query: () => `admin/list`,
-      providesTags: [{ type: 'Admin', id: 'AdminList' }],
+      providesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
     addNewAdmin: builder.mutation<any, AddAdminData>({
       query: (formData) => ({
         url: `/access/admin`,
-        method: 'POST',
+        method: "POST",
         body: formData,
       }),
 
-      invalidatesTags: [{ type: 'Admin', id: 'AdminList' }],
+      invalidatesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
     editAdmin: builder.mutation<any, updateAdminData>({
       query: ({ formData, id }) => ({
         url: `/access/update/admin/${id}`,
-        method: 'POST',
+        method: "POST",
         body: formData,
       }),
 
-      invalidatesTags: [{ type: 'Admin', id: 'AdminList' }],
+      invalidatesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
     deleteAdmin: builder.mutation({
       query: (id) => ({
         url: `/access/admin/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
 
-      invalidatesTags: [{ type: 'Admin', id: 'AdminList' }],
+      invalidatesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
     changeNewAdminPassword: builder.mutation({
       query: (formData) => ({
         url: `/admins/team/add-password`,
-        method: 'POST',
+        method: "POST",
         body: formData,
       }),
 
-      invalidatesTags: [{ type: 'Admin', id: 'AdminList' }],
+      invalidatesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
     // === Admin end ===
 
-    // === Riders Start ===
-    getAllRiders: builder.query({
-      query: () => `/admin/rider`,
-
-      providesTags: [{ type: 'Admin', id: 'AdminList' }],
+    getAllStats: builder.query({
+      query: () => `/admin/dashboard/stats`,
     }),
-    // === Riders end ===
+
+    // === Users Start ===
+    getAllUsers: builder.query({
+      query: (params) => `/admin/user/list?${queryBuilder(params)}`,
+    }),
+
+    getAllBuyers: builder.query({
+      query: (params) => `/admin/user/buyers?${queryBuilder(params)}`,
+    }),
+
+    getAllSellers: builder.query({
+      query: (params) => `/admin/user/sellers?${queryBuilder(params)}`,
+    }),
+
+    getUserById: builder.query({
+      query: (userId) => `/admin/user/show/${userId}`,
+    }),
+    // === Users end ===
   }),
 });
 
@@ -110,7 +125,12 @@ export const {
   useChangeNewAdminPasswordMutation,
   // ==== ADINM ENDS====
 
-  // ==== RIDERS START====
-  useGetAllRidersQuery,
-  // ==== RIDERS ENDS====
+  // ==== CUSTOMERS START====
+  useGetAllBuyersQuery,
+  useGetAllSellersQuery,
+  useGetAllUsersQuery,
+  useGetUserByIdQuery,
+  // ==== CUSTOMERS START====
+
+  useGetAllStatsQuery,
 } = apiSLice;

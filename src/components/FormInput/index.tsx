@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
 
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../ui/ErrorMessage';
 
 export interface IFormInputProps {
   label?: string;
@@ -78,7 +78,7 @@ const FormInput = ({
           rows={6}
           onChange={onChange}
           onBlur={onBlur}
-          className={error ? 'errors form-controls' : 'form-controls'}
+          className={error ? 'errors form-control' : 'form-control'}
           placeholder={placeholder}
           disabled={disabled}
           defaultValue={defaultValue}
@@ -89,7 +89,7 @@ const FormInput = ({
           name={name}
           onChange={onChange}
           onBlur={onBlur}
-          className={error ? 'errors form-controls' : 'form-controls'}
+          className={error ? 'errors form-control' : 'form-control'}
           disabled={disabled}
           defaultValue={defaultValue}
         >
@@ -127,7 +127,7 @@ const FormInput = ({
             type={showPassword[id] ? 'text' : 'password'}
             onChange={onChange}
             onBlur={onBlur}
-            className={error ? 'errors form-controls' : 'form-controls'}
+            className={error ? 'errors form-control' : 'form-control'}
             placeholder={placeholder}
             disabled={disabled}
             defaultValue={defaultValue}
@@ -150,7 +150,7 @@ const FormInput = ({
           type={type}
           onChange={onChange}
           onBlur={onBlur}
-          className={error ? 'errors form-controls' : 'form-controls'}
+          className={error ? 'errors form-control' : 'form-control'}
           placeholder={placeholder}
           disabled={disabled}
           defaultValue={defaultValue}

@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../Stores/store';
-import { IAdminData } from '@/Interfaces/Admin';
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../Stores/store";
+import { IAdminData } from "@/types/Admin";
 
 export interface UserDataState {
   admin: IAdminData;
@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const userDatasSlice = createSlice({
-  name: 'userDatas',
+  name: "userDatas",
   initialState,
   reducers: {
     getAllAdmin: (state, action) => {

@@ -1,9 +1,9 @@
-import { Navigate } from 'react-router-dom';
-import { ReactNode, useState } from 'react';
-import NavBar from '@/components/Header/NavBar';
-import Sidebar from '@/components/Sidebar/Sidebar';
-import { selectUserData } from '@/Redux/Features/userAuthSlice';
-import { useAppSelector } from '@/Redux/reduxHooks';
+import { Navigate } from "react-router-dom";
+import { ReactNode, useState } from "react";
+import NavBar from "@/components/Header/NavBar";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import { selectUserData } from "@/Redux/Features/userAuthSlice";
+import { useAppSelector } from "@/Redux/reduxHooks";
 
 interface Layout {
   children: ReactNode;
@@ -14,22 +14,22 @@ const DashboardLayout: React.FC<Layout> = ({ children }) => {
   const { isLoggedIn } = useAppSelector(selectUserData);
 
   if (!isLoggedIn) {
-    return <Navigate to='/signin' replace />;
+    return <Navigate to="/signin" replace />;
   }
 
   return (
-    <main className='flex justify-between'>
+    <main className="flex justify-between">
       <section
         className={` ${
-          toggleSideBar ? ' w-56' : 'w-[20%] md:w-[10%] lg:w-[5%]'
-        } min-h-screen border-r border-Grey5 bg-white p-1 transition-all duration-300 px-2 md:px-4`}
+          toggleSideBar ? "w-56" : "w-[20%] md:w-[10%] lg:w-[7%]"
+        } min-h-screen border-r border-Grey5 bg-white p-1 px-2 transition-all duration-300 md:px-4`}
       >
         <Sidebar
           toggleSideBar={toggleSideBar}
           setToggleSideBar={setToggleSideBar}
         />
       </section>
-      <aside className='flex-1 transition-all duration-300'>
+      <aside className="flex-1 transition-all duration-300">
         <NavBar />
         {children}
       </aside>

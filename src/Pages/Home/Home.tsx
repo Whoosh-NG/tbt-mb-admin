@@ -1,14 +1,47 @@
-import { useGetAllAdminQuery } from '@/api/apiSlice';
-import useUpdatePageName from '@/Hooks/useUpdatePageName';
+import { useGetAllStatsQuery } from "@/api/apiSlice";
+import useUpdatePageName from "@/Hooks/useUpdatePageName";
 
 const Home = () => {
-  const { data } = useGetAllAdminQuery({});
-  useUpdatePageName('Home');
+  const { data } = useGetAllStatsQuery({});
+  useUpdatePageName("Home");
 
-  console.log(data);
+  const homeData = [
+    {
+      id: 1,
+      title: data?.data?.orders_count,
+      subTitle: "Total Orders",
+    },
+    {
+      id: 2,
+      title: "12,028",
+      subTitle: "Total Customers",
+    },
+    {
+      id: 3,
+      title: "1,200",
+      subTitle: "Total Markets",
+    },
+    {
+      id: 4,
+      title: data?.data?.product_count,
+      subTitle: "Total Products",
+    },
+  ];
   return (
-    <main>
-      <h2>Welcome Admin</h2>
+    <main className="container py-10">
+      <ul className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        {homeData.map(({ id, title, subTitle }) => (
+          <li key={id} className="card flex items-center gap-2 p-4">
+            <div className="animate__animated animate__tada my-2">
+              <small className=""> {subTitle} </small>
+              <h4 className="animate__animated animate__tada font-bold">
+                {" "}
+                {title}{" "}
+              </h4>
+            </div>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 };

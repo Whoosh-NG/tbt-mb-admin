@@ -1,8 +1,9 @@
 @font-face {
-  font-family: 'Satoshi';
-  src: url('./fonts/Satoshi-Variable.woff2') format('woff2'),
-    url('./fonts/Satoshi-Variable.woff') format('woff'),
-    url('./fonts/Satoshi-Variable.ttf') format('truetype');
+  font-family: "Satoshi";
+  src:
+    url("./fonts/Satoshi-Variable.woff2") format("woff2"),
+    url("./fonts/Satoshi-Variable.woff") format("woff"),
+    url("./fonts/Satoshi-Variable.ttf") format("truetype");
 
   font-weight: 100 900;
   font-style: normal;
@@ -13,11 +14,11 @@
 @tailwind utilities;
 
 .container {
-  @apply w-[95%] lg:w-[90%] mx-auto;
+  @apply mx-auto w-[97%] lg:w-[95%];
 }
 
 :root {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
@@ -28,7 +29,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --pryColor: #dc1d1f;
+  --pryColor: #4c6538;
   --secColor: #ffa24f;
   --white: #fff;
   --black: #090909;
@@ -63,7 +64,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   /* max-width: 1800px; */
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   color: var(--black);
   background: #f9f9fa;
 }
@@ -175,7 +176,9 @@ em {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 .react-tel-input .form-control {
@@ -219,7 +222,7 @@ select {
   -ms-progress-appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  background: url('../public/selectIcon.svg') no-repeat;
+  background: url("../public/selectIcon.svg") no-repeat;
   background-position: 95% 50%;
 }
 
@@ -227,7 +230,7 @@ select {
 
 .trackOrderPage {
   min-height: 90vh;
-  background: url('../public/homeHero.webp') top center no-repeat;
+  background: url("../public/homeHero.webp") top center no-repeat;
   background-size: cover;
 }
 
@@ -260,8 +263,8 @@ select {
 
 .sidebarActive {
   border-radius: 10px;
-  background: color-mix(in sRGB, var(--pryColor) 20%, transparent 80%);
-  color: var(--pryColor);
+  background: var(--pryColor);
+  color: var(--white);
   width: fit-content;
   padding: 0.6em;
   margin: 0.5em 0;
@@ -269,7 +272,7 @@ select {
 
 .sidebarActive h4 {
   font-size: 0.9rem;
-  color: var(--pryColor);
+  color: var(--white);
 }
 
 .sidebarActive svg [stroke] {
@@ -277,7 +280,7 @@ select {
 }
 
 .sidebarActive svg {
-  fill: var(--pryColor);
+  fill: var(--white);
 }
 
 svg[Attributes] {
@@ -294,11 +297,11 @@ svg[Attributes] {
 
 .sidebarNotActive h4 {
   font-size: 0.9rem;
-  color: var(--Grey1);
+  color: var(--Grey3);
 }
 
 .sidebarNotActive svg {
-  fill: var(--Grey1);
+  fill: var(--Grey3);
 }
 
 /* .sidebarNotActive svg {
@@ -569,13 +572,13 @@ input::placeholder {
   color: var(--Grey6) !important;
 }
 
-input[type='radio'] {
+input[type="radio"] {
   width: 1em;
   height: 1em;
   border: solid 1px var(--Grey2);
 }
 
-input:checked[type='radio'] {
+input:checked[type="radio"] {
   width: 1em;
   height: 1em;
   border: solid 1px var(--Grey2);

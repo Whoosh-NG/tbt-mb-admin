@@ -1,11 +1,11 @@
-import BrandLogo from '@/components/BrandLogo';
+import BrandLogo from '@/components/ui/BrandLogo';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import * as API from '@/api/apis';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import Spinner from '@/spinner/Spinner';
 import FormInput from '@/components/FormInput';
-import ErrorMessage from '@/components/ErrorMessage';
+import ErrorMessage from '@/components/ui/ErrorMessage';
 
 import { toast } from 'react-hot-toast';
 import { useAppSelector } from '@/Redux/reduxHooks';
