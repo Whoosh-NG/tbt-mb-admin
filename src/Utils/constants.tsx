@@ -1,8 +1,10 @@
 import { IColData } from "@/types/GlobalInterfaces";
-import { readableDateTime } from ".";
+import { readableDateTime } from "./helpers";
 import AllCustomers from "@/components/Main/CustomerMgt/AllCustomers";
 import Buyers from "@/components/Main/CustomerMgt/Buyers";
 import Sellers from "@/components/Main/CustomerMgt/Sellers";
+import Markets from "@/components/Main/Markets/Markets";
+import Categories from "@/components/Main/Markets/Categories";
 
 export const userColData: IColData[] = [
   {
@@ -67,5 +69,24 @@ export const USerTabs = {
     { id: "tab1", comp: <AllCustomers /> },
     { id: "tab2", comp: <Buyers /> },
     { id: "tab3", comp: <Sellers /> },
+  ],
+};
+
+export const marketsTabs = {
+  TabTitle: [
+    {
+      id: "tab1",
+      title: "Markets",
+    },
+
+    {
+      id: "tab2",
+      title: "Categories",
+    },
+  ],
+
+  TabContents: [
+    { id: "tab1", comp: <Markets /> },
+    { id: "tab2", comp: <Categories /> },
   ],
 };

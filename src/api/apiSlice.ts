@@ -1,5 +1,6 @@
 import { AddAdminData, updateAdminData } from "@/types/Admin";
-import { queryBuilder } from "@/Utils";
+import { MarketsRsp } from "@/types/Markets";
+import { queryBuilder } from "@/Utils/helpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
@@ -23,25 +24,7 @@ const customBaseQuery = fetchBaseQuery({
 export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
-  tagTypes: [
-    "Admin",
-    "Store",
-    "StoreList",
-    "List",
-    "Products",
-    "Withdrawal",
-    "WithdrawalList",
-    "Ads",
-    "AdsList",
-    "Users",
-    "UsersList",
-    "Faqs",
-    "FaqsList",
-    "Categs",
-    "CategsList",
-    "HelpCategs",
-    "HelpCategsList",
-  ],
+  tagTypes: ["Admin", "Agents"],
 
   // All endpoints
   endpoints: (builder) => ({
@@ -93,7 +76,7 @@ export const apiSLice = createApi({
     // === Admin end ===
 
     getAllStats: builder.query({
-      query: () => `/admin/dashboard/stats`,
+      query: () => `/admin/dashboard/mb/stats`,
     }),
 
     // === Users Start ===
@@ -113,6 +96,113 @@ export const apiSLice = createApi({
       query: (userId) => `/admin/user/show/${userId}`,
     }),
     // === Users end ===
+
+    // === Products start ===
+    getAllProducts: builder.query({
+      query: (params) =>
+        `/admin/mile-12-market/product/my-product/get-all?${queryBuilder(params)}`,
+    }),
+
+    createProducts: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/product/create`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    updateProducts: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/product/update`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    deleteProducts: builder.mutation({
+      query: (id) => ({
+        url: `/admin/mile-12-market/product/delete/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    // === Products end ===
+    createAgents: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/agent/create`,
+        method: "POST",
+        body: formData,
+      }),
+
+      invalidatesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
+    getAllAgents: builder.query({
+      query: (params) => `/agent/list?${queryBuilder(params)}`,
+      providesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
+    updateAgents: builder.query({
+      query: (formData) => ({
+        url: `/admin/agent/update`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    getAllMarkets: builder.query<{ data: MarketsRsp[] }, any>({
+      query: (params) => `/market/list?${queryBuilder(params)}`,
+    }),
+
+    getMarketById: builder.query({
+      query: (id) => `/market/show/${id}`,
+    }),
+
+    createMarkets: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/market/create`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    updateMarkets: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/market/update`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    getAllCategories: builder.query({
+      query: () => `/mile-12-market/category/list`,
+    }),
+
+    getCategoryById: builder.query({
+      query: (id) => `/mile-12-market/category/show/${id}`,
+    }),
+
+    createCategories: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/category/create`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    updateCategories: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/category/update`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
+
+    deleteCategoryById: builder.query({
+      query: (id) => ({
+        url: `/admin/mile-12-market/category/delete/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -131,6 +221,28 @@ export const {
   useGetAllUsersQuery,
   useGetUserByIdQuery,
   // ==== CUSTOMERS START====
+
+  // ==== PRODUCTS START====
+  useGetAllProductsQuery,
+  useCreateProductsMutation,
+  useUpdateProductsMutation,
+  useDeleteProductsMutation,
+  // ==== PRODUCTS START====
+
+  // ==== MARKETS START====
+  useGetAllAgentsQuery,
+  useUpdateAgentsQuery,
+  useDeleteCategoryByIdQuery,
+  useCreateAgentsMutation,
+  useCreateCategoriesMutation,
+  useCreateMarketsMutation,
+  useUpdateCategoriesMutation,
+  useUpdateMarketsMutation,
+  useGetAllCategoriesQuery,
+  useGetAllMarketsQuery,
+  useGetCategoryByIdQuery,
+  useGetMarketByIdQuery,
+  // ==== MARKETS START====
 
   useGetAllStatsQuery,
 } = apiSLice;

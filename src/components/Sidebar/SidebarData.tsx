@@ -1,6 +1,8 @@
+import { AiFillProduct } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
 import { MdAccountBalance, MdDashboard } from "react-icons/md";
 import { RiAdminFill, RiFileList3Fill } from "react-icons/ri";
+import { SiMarketo } from "react-icons/si";
 import { TbTruckDelivery } from "react-icons/tb";
 
 export const SidebarData = [
@@ -12,9 +14,15 @@ export const SidebarData = [
   },
   {
     id: "tab2",
-    icon: <RiAdminFill />,
+    icon: <AiFillProduct />,
     title: "Products Management",
     url: "/products-management",
+  },
+  {
+    id: "tab8",
+    icon: <SiMarketo />,
+    title: "Markets Management",
+    url: "/markets-management",
   },
   {
     id: "tab3",

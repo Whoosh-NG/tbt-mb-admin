@@ -1,20 +1,21 @@
 import RoutingTabTitle from "@/components/ui/Tabs/RoutingTabTitle";
 import TabContents from "@/components/ui/Tabs/TabContents";
-import { USerTabs } from "@/Utils/constants";
+import useUpdatePageName from "@/Hooks/useUpdatePageName";
+import { marketsTabs } from "@/Utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 
-const CustomerMgt = () => {
+const MarketsMgt = () => {
+  useUpdatePageName("Markets");
+
   const [query] = useSearchParams();
 
   const activeTab = query.get("tab") || "tab1";
 
   return (
     <main className="container py-10">
-      <h2>All users</h2>
-
       <ul className="flex items-center">
-        {USerTabs?.TabTitle.map(({ id, title }) => (
+        {marketsTabs?.TabTitle.map(({ id, title }) => (
           <Link to={`/customers-management?tab=${id}`} key={id}>
             <RoutingTabTitle
               id={id}
@@ -28,7 +29,7 @@ const CustomerMgt = () => {
       </ul>
 
       <section>
-        {USerTabs?.TabContents?.map(({ id, comp }) => (
+        {marketsTabs?.TabContents?.map(({ id, comp }) => (
           <Fragment key={id}>
             <TabContents id={id} activeTab={activeTab} comps={comp} />
           </Fragment>
@@ -38,4 +39,4 @@ const CustomerMgt = () => {
   );
 };
 
-export default CustomerMgt;
+export default MarketsMgt;

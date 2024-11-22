@@ -2,6 +2,8 @@ import dayjs from "dayjs";
 import numeral from "numeral";
 import toast from "react-hot-toast";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { QueryActionCreatorResult } from "@reduxjs/toolkit/query";
+import { Dispatch, SetStateAction } from "react";
 
 dayjs.extend(relativeTime);
 
@@ -37,12 +39,26 @@ export const formatTimeString = (timeString: string) => {
   return time.format("hh:mm:ss A");
 };
 
-export const formatNumInThousands = (value: number) => {
+export const formatNumInThousands = (value: number | string) => {
   // Format using numeral.js
   return numeral(value).format("0.00a");
 };
 
 export const queryBuilder = (params: { [key: string]: string }) => {
-  console.log(params);
   return new URLSearchParams(params);
+};
+
+export const reftechData = async (
+  data: () => QueryActionCreatorResult<any>,
+  id: string,
+  setLoading: Dispatch<SetStateAction<{ [key: string | number]: boolean }>>,
+) => {
+  setLoading({ [id]: true });
+  try {
+    await data();
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setLoading({ [id]: false });
+  }
 };

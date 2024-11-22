@@ -3,6 +3,7 @@ import Administrators from "@/Pages/Administrators/Administrators";
 import CustomerMgt from "@/Pages/CustomerMgt/CustomerMgt";
 import Home from "@/Pages/Home/Home";
 import LogisticsMgt from "@/Pages/LogisticsMgt/LogisticsMgt";
+import MarketsMgt from "@/Pages/MarketsMgt/MarketsMgt";
 import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
 import ProductMgt from "@/Pages/ProductMgt/ProductMgt";
 import { ReactElement } from "react";
@@ -19,6 +20,11 @@ const dashboardRoutes: Route[] = [
     path: "/products-management",
     name: "Products Management",
     element: <ProductMgt />,
+  },
+  {
+    path: "/markets-management",
+    name: "Markets Management",
+    element: <MarketsMgt />,
   },
   {
     path: "/customers-management",

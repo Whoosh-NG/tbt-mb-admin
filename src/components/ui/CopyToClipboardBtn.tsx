@@ -1,6 +1,6 @@
-import { handleCopyToClipboard } from '@/Utils';
-import { useState } from 'react';
-import { FaCircleCheck, FaRegCopy } from 'react-icons/fa6';
+import { handleCopyToClipboard } from "@/Utils/helpers";
+import { useState } from "react";
+import { FaCircleCheck, FaRegCopy } from "react-icons/fa6";
 
 const CopyToClipboardBtn = ({
   id,
@@ -24,11 +24,11 @@ const CopyToClipboardBtn = ({
   return (
     <button onClick={handleCopy}>
       {clicked ? (
-        <span className='animate__animated animate__bounceIn text-positive'>
+        <span className="animate__animated animate__bounceIn text-positive">
           <FaCircleCheck />
         </span>
       ) : (
-        <FaRegCopy className='text-Grey6 animate__animated animate__bounceIn' />
+        <FaRegCopy className="animate__animated animate__bounceIn text-Grey6" />
       )}
     </button>
   );

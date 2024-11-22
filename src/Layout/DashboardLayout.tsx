@@ -9,7 +9,7 @@ interface Layout {
   children: ReactNode;
 }
 const DashboardLayout: React.FC<Layout> = ({ children }) => {
-  const [toggleSideBar, setToggleSideBar] = useState(false);
+  const [toggleSideBar, setToggleSideBar] = useState(true);
 
   const { isLoggedIn } = useAppSelector(selectUserData);
 

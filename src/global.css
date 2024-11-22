@@ -297,11 +297,11 @@ svg[Attributes] {
 
 .sidebarNotActive h4 {
   font-size: 0.9rem;
-  color: var(--Grey3);
+  color: var(--Grey6);
 }
 
 .sidebarNotActive svg {
-  fill: var(--Grey3);
+  fill: var(--Grey6);
 }
 
 /* .sidebarNotActive svg {

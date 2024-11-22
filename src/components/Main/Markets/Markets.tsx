@@ -1,16 +1,14 @@
-import { useGetAllProductsQuery } from "@/api/apiSlice";
+import { useGetAllMarketsQuery, useGetAllProductsQuery } from "@/api/apiSlice";
 import ProductCard from "@/components/Main/Products/ProductCard";
 import ServerPaginate from "@/components/ServerPaginate";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
-import useUpdatePageName from "@/Hooks/useUpdatePageName";
 import { reftechData } from "@/Utils/helpers";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
 
-const ProductMgt = () => {
-  useUpdatePageName("Product Managements");
-
+const Markets = () => {
   const { handleSearch, setLoading, loading } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
 
@@ -19,7 +17,7 @@ const ProductMgt = () => {
   }>({
     page: 2,
   });
-  const { data, isLoading, refetch } = useGetAllProductsQuery(queryData);
+  const { data, isLoading, refetch } = useGetAllMarketsQuery(queryData);
 
   useEffect(() => {
     reftechData(refetch, "active", setLoading);
@@ -46,7 +44,7 @@ const ProductMgt = () => {
         <h4>All Available Products</h4>
         <button className="main-btn flex items-center gap-3">
           {" "}
-          <FaPlus /> Add New Product
+          <FaPlus /> Add New Markets
         </button>
       </header>
       <section>
@@ -59,31 +57,30 @@ const ProductMgt = () => {
             ))}
           </ul>
         ) : (
-          <ul className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-5 lg:gap-3">
-            {filteredData?.map((item) => (
-              <li key={item?.id} data-aos="fade-in">
-                <ProductCard productData={item} />
+          <ul className="grid grid-cols-4 gap-2">
+            {data?.data?.map(({ id, name, banner }) => (
+              <li
+                key={id}
+                className="card flex flex-col justify-between p-5"
+                data-aos="fade-in"
+              >
+                <figure className="relative h-40 overflow-hidden rounded-lg">
+                  <img
+                    src={banner}
+                    alt="TBT Marketbazzar markets banners"
+                    className="zoomImg !h-full object-cover"
+                  />
+                </figure>
+                <div className="mt-8">
+                  <h4 className="my-10">{name} </h4>
+                </div>
               </li>
             ))}
           </ul>
         )}
       </section>
-
-      <div className="">
-        <ServerPaginate
-          data={data?.data?.data}
-          handleSearch={handleSearch}
-          currentPage={filteredData}
-          setCurrentPage={setFilteredData}
-          searchParams="firstName"
-          itemsPerPage={queryData?.page as number}
-          totalItemsCount={data?.data?.last_page}
-          setQueryData={setQueryData}
-          keyIndex="page"
-        />
-      </div>
     </main>
   );
 };
 
-export default ProductMgt;
+export default Markets;

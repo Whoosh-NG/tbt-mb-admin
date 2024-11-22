@@ -1,4 +1,5 @@
 import { useGetAllStatsQuery } from "@/api/apiSlice";
+import Agents from "@/components/Main/Agents/Agents";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
 
 const Home = () => {
@@ -13,12 +14,12 @@ const Home = () => {
     },
     {
       id: 2,
-      title: "12,028",
+      title: data?.data?.customers_count,
       subTitle: "Total Customers",
     },
     {
       id: 3,
-      title: "1,200",
+      title: data?.data?.market_count,
       subTitle: "Total Markets",
     },
     {
@@ -42,6 +43,8 @@ const Home = () => {
           </li>
         ))}
       </ul>
+
+      <Agents />
     </main>
   );
 };
