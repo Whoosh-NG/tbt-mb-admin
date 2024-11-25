@@ -5,6 +5,9 @@ import Buyers from "@/components/Main/CustomerMgt/Buyers";
 import Sellers from "@/components/Main/CustomerMgt/Sellers";
 import Markets from "@/components/Main/Markets/Markets";
 import Categories from "@/components/Main/Markets/Categories";
+import Brands from "@/components/Main/Markets/Brands";
+import Button from "@/components/ui/Button";
+import BrandAction from "@/components/Main/Markets/BrandAction";
 
 export const userColData: IColData[] = [
   {
@@ -47,6 +50,33 @@ export const userColData: IColData[] = [
   //   },
 ];
 
+export const brandColData = (): IColData[] => {
+  return [
+    {
+      name: "App Type",
+      selector: ({ app_type }) => app_type,
+    },
+    {
+      name: "Name",
+      selector: ({ name }) => name,
+    },
+
+    {
+      name: "Description",
+      selector: ({ description }) => description,
+      grow: 3,
+    },
+    {
+      name: "Products Counts",
+      selector: ({ products_count }) => products_count,
+    },
+    {
+      name: "Action",
+      cell: (row) => <BrandAction id={row?.id} />,
+    },
+  ];
+};
+
 export const USerTabs = {
   TabTitle: [
     {
@@ -83,10 +113,16 @@ export const marketsTabs = {
       id: "tab2",
       title: "Categories",
     },
+
+    {
+      id: "tab3",
+      title: "Brands",
+    },
   ],
 
   TabContents: [
     { id: "tab1", comp: <Markets /> },
     { id: "tab2", comp: <Categories /> },
+    { id: "tab3", comp: <Brands /> },
   ],
 };

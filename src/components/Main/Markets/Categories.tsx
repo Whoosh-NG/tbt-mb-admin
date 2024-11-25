@@ -1,11 +1,16 @@
 import { useGetAllCategoriesQuery } from "@/api/apiSlice";
 import { FaPlus } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
+import AddNewCategory from "./AddNewCategory";
+import { useAppSelector } from "@/Redux/reduxHooks";
+import { selectGlobal } from "@/Redux/Features/globalSlice";
+import { useGlobalHooks } from "@/Hooks/globalHooks";
 
 const Categories = () => {
   const { data, isLoading } = useGetAllCategoriesQuery({});
+  const toggle = useAppSelector(selectGlobal);
+  const { handleShow } = useGlobalHooks();
 
-  console.log(data);
   if (isLoading) {
     return (
       <main className="container py-10">
@@ -23,7 +28,10 @@ const Categories = () => {
     <main className="container py-10">
       <header className="mb-10 flex flex-wrap justify-between gap-3">
         <h4>All Categories</h4>
-        <button className="main-btn flex items-center gap-3">
+        <button
+          onClick={() => handleShow("new-catge")}
+          className="main-btn flex items-center gap-3"
+        >
           {" "}
           <FaPlus /> Add New Category
         </button>
@@ -50,6 +58,10 @@ const Categories = () => {
           )}
         </ul>
       </section>
+
+      {toggle["new-catge"] && (
+        <AddNewCategory id="new-catge" close={() => handleShow("new-catge")} />
+      )}
     </main>
   );
 };

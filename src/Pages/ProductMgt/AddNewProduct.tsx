@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import {
   useCreateProductsMutation,
   useGetAllMarketsQuery,
-  useGetBrandsQuery,
+  useGetAllBrandsQuery,
   useGetCategoriesByMarketIdQuery,
 } from "@/api/apiSlice";
 import toast from "react-hot-toast";
@@ -35,7 +35,7 @@ const initialValues = {
 const AddNewProduct = () => {
   const [newProduct, { isLoading }] = useCreateProductsMutation();
   const { data: markets, isLoading: marketing } = useGetAllMarketsQuery({});
-  const { data: brands, isLoading: branding } = useGetBrandsQuery({});
+  const { data: brands, isLoading: branding } = useGetAllBrandsQuery({});
 
   const [getImages, setGetImages] = useState<{
     images: File[] | null;

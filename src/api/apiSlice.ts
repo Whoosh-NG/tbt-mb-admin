@@ -25,7 +25,7 @@ const customBaseQuery = fetchBaseQuery({
 export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Admin", "Agents", "Products"],
+  tagTypes: ["Admin", "Agents", "Products", "Brands", "Categories"],
 
   // All endpoints
   endpoints: (builder) => ({
@@ -196,18 +196,45 @@ export const apiSLice = createApi({
 
     getCategoriesByMarketId: builder.query({
       query: (id) => `/mile-12-market/category/listbymarket/${id}`,
+      providesTags: [{ type: "Categories", id: "LIST" }],
     }),
 
     getAllCategories: builder.query<CategoryRspData, any>({
       query: () => `/mile-12-market/category/list`,
+      providesTags: [{ type: "Categories", id: "LIST" }],
     }),
 
     getCategoryById: builder.query({
       query: (id) => `/mile-12-market/category/show/${id}`,
+      providesTags: [{ type: "Categories", id: "LIST" }],
     }),
 
-    getBrands: builder.query({
+    getBrandById: builder.query({
+      query: (id) => `/admin/brand/show/${id}`,
+      providesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+
+    getAllBrands: builder.query({
       query: () => `/admin/brand/list-tbt-brands`,
+      providesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+
+    createBrands: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/brand/create`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+
+    updateBrands: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/brand/update`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Brands", id: "LIST" }],
     }),
 
     createCategories: builder.mutation({
@@ -216,6 +243,7 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: [{ type: "Categories", id: "LIST" }],
     }),
 
     updateCategories: builder.mutation({
@@ -224,13 +252,15 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: [{ type: "Categories", id: "LIST" }],
     }),
 
-    deleteCategoryById: builder.query({
+    deleteCategoryById: builder.mutation({
       query: (id) => ({
         url: `/admin/mile-12-market/category/delete/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [{ type: "Categories", id: "LIST" }],
     }),
   }),
 });
@@ -263,7 +293,7 @@ export const {
   // ==== MARKETS START====
   useGetAllAgentsQuery,
   useUpdateAgentsQuery,
-  useDeleteCategoryByIdQuery,
+  useDeleteCategoryByIdMutation,
   useCreateAgentsMutation,
   useCreateCategoriesMutation,
   useCreateMarketsMutation,
@@ -277,5 +307,8 @@ export const {
   // ==== MARKETS START====
 
   useGetAllStatsQuery,
-  useGetBrandsQuery,
+  useGetAllBrandsQuery,
+  useCreateBrandsMutation,
+  useUpdateBrandsMutation,
+  useGetBrandByIdQuery,
 } = apiSLice;

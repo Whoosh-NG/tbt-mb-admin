@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import {
   useDeleteProductsImgsMutation,
   useGetAllMarketsQuery,
-  useGetBrandsQuery,
+  useGetAllBrandsQuery,
   useGetCategoriesByMarketIdQuery,
   useGetProductByIdQuery,
   useUpdateProductsMutation,
@@ -27,7 +27,7 @@ const EditProduct = () => {
   const navigate = useNavigate();
 
   const [updateProduct, { isLoading }] = useUpdateProductsMutation();
-  const { data: brands, isLoading: branding } = useGetBrandsQuery({});
+  const { data: brands, isLoading: branding } = useGetAllBrandsQuery({});
   const { data: markets, isLoading: marketing } = useGetAllMarketsQuery({});
   const {
     data: product,
