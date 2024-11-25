@@ -66,7 +66,7 @@ body {
   /* max-width: 1800px; */
   font-family: "Satoshi", sans-serif;
   color: var(--black);
-  background: #f9f9fa;
+  background: var(--white);
 }
 
 strong {
@@ -331,7 +331,7 @@ svg[Attributes] {
 .main-btn {
   background: var(--pryColor);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--white);
@@ -340,7 +340,7 @@ svg[Attributes] {
 .sec-btn {
   background: var(--secColor);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--white);
@@ -350,7 +350,7 @@ svg[Attributes] {
   background: transparent;
   border: solid 1px var(--secColor);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--secColor);
@@ -360,7 +360,7 @@ svg[Attributes] {
   background: transparent;
   border: solid 1.5px var(--Grey6);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--Grey6) !important;
@@ -369,7 +369,7 @@ svg[Attributes] {
 .outline-btn {
   border: solid 1px var(--pryColor);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--pryColor);
@@ -378,7 +378,7 @@ svg[Attributes] {
 .negative-btn {
   border: solid 1px var(--negative);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--negative);
@@ -387,7 +387,7 @@ svg[Attributes] {
 .positive-btn {
   border: solid 1px var(--positive);
   border-radius: 4px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--positive);
@@ -396,7 +396,7 @@ svg[Attributes] {
 .outline-dark {
   border: solid 1px var(--Grey3);
   border-radius: 8px;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--black);
@@ -734,6 +734,19 @@ label {
     opacity: 0.7;
   }
 } */
+
+.activeThumb {
+  overflow: hidden;
+  border: solid 1px var(--pryColor);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.notActiveThumb {
+  overflow: hidden;
+  border-radius: 7px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 900px) {
   h1 {

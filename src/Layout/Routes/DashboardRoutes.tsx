@@ -5,6 +5,8 @@ import Home from "@/Pages/Home/Home";
 import LogisticsMgt from "@/Pages/LogisticsMgt/LogisticsMgt";
 import MarketsMgt from "@/Pages/MarketsMgt/MarketsMgt";
 import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
+import AddNewProduct from "@/Pages/ProductMgt/AddNewProduct";
+import EditProduct from "@/Pages/ProductMgt/EditProduct";
 import ProductMgt from "@/Pages/ProductMgt/ProductMgt";
 import { ReactElement } from "react";
 
@@ -20,6 +22,16 @@ const dashboardRoutes: Route[] = [
     path: "/products-management",
     name: "Products Management",
     element: <ProductMgt />,
+  },
+  {
+    path: "/add-new-product",
+    name: "Add New Product",
+    element: <AddNewProduct />,
+  },
+  {
+    path: "/edit-product/:id",
+    name: "Edit Product",
+    element: <EditProduct />,
   },
   {
     path: "/markets-management",

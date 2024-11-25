@@ -1,3 +1,5 @@
+import { Product, ProductIamges, ProductMarket } from "./Products";
+
 export type MarketsRsp = {
   id: number;
   name: string;
@@ -27,83 +29,6 @@ export type CategoryRspData = {
   data: CategoryRsp[];
 };
 
-export type ProductIamges = {
-  id?: number | undefined;
-  image_url?: string | undefined;
-  imageable_type?: string | undefined;
-  imageable_id?: number | undefined;
-};
-
-export type ProductMarket = {
-  id?: number | undefined;
-  name?: string | undefined;
-  banner?: string | undefined;
-};
-
-export type Product = {
-  id?: number | undefined;
-  name?: string | undefined;
-  slug?: string | undefined;
-  sale_price?: number | undefined;
-  tbt_price?: number | undefined;
-  market_id?: number | undefined;
-  brand_id: number | string | undefined | null;
-  weight: string | undefined;
-  quantity: number | undefined;
-  category_id?: number | undefined;
-  views_count?: number | undefined;
-  category?: {
-    id?: number | undefined;
-    name?: string | undefined;
-  };
-  market?: ProductMarket;
-  images?: ProductIamges[];
-};
-
-export interface CartProduct extends Product {
-  user_id: number;
-  market_id: number;
-  description: string;
-  unit: string;
-  minimum_purchase: number;
-  views_count: number;
-  user: User;
-  tags: string[];
-  country: string | null;
-  state: string | null;
-  city: string | null;
-}
-export interface CartRsp {
-  id: number;
-  user_id: number;
-  product_id: number;
-  quantity: number;
-  amount: number;
-  weight: string;
-  product: CartProduct;
-}
-
-export type CartItems = Product & {
-  quantity: number;
-};
-
-export type ProductsRspData = {
-  data: {
-    current_page: number;
-    data: Product[];
-    first_page_url: string;
-    from: number;
-    last_page: number;
-    last_page_url: string;
-    next_page_url: null;
-    path: string;
-    per_page: number;
-    prev_page_url: null;
-    to: number;
-    total: number;
-  };
-};
-
 export type User = {
   id: number;
   first_name: string;
@@ -113,68 +38,6 @@ export type User = {
   profile_picture: null;
   user_type: string;
   seller_id: string;
-};
-
-export type SingleProducts = {
-  data: {
-    id: number;
-    user_id: number;
-    name: string;
-    slug: string;
-    location: string;
-    status: string;
-    sale_price: number;
-    tbt_price: number;
-    description: string;
-    quantity: number;
-    unit: string;
-    size: string;
-    weight: string;
-    minimum_purchase: number;
-    category_id: number;
-    market_id: number;
-    country_id: number;
-    state_id: number;
-    city_id: number;
-    other_info: string;
-    featured_image: null;
-    clicks: number;
-    created_at: string;
-    updated_at: string;
-    deleted_at: null;
-    is_top_ranking: number;
-    is_created_by: string;
-    is_updated_by: string;
-    market_type: string;
-    brand_id: null;
-    rating_avg: null;
-    ratings_count: number;
-    ratings: null;
-    views_count: number;
-    user: User;
-    category: {
-      id: number;
-      name: string;
-    };
-    images: ProductIamges[];
-
-    country: {
-      id: number;
-      name: string;
-    };
-
-    state: {
-      id: number;
-      country_id: number;
-      name: string;
-    };
-    city: {
-      id: number;
-      state_id: number;
-      name: string;
-    };
-    market: ProductMarket;
-  };
 };
 
 export type ShippingDetails = {

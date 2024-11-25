@@ -16,7 +16,7 @@ const MarketsMgt = () => {
     <main className="container py-10">
       <ul className="flex items-center">
         {marketsTabs?.TabTitle.map(({ id, title }) => (
-          <Link to={`/customers-management?tab=${id}`} key={id}>
+          <Link to={`/markets-management?tab=${id}`} key={id}>
             <RoutingTabTitle
               id={id}
               title={title}

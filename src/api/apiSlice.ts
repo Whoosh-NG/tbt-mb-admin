@@ -1,5 +1,6 @@
 import { AddAdminData, updateAdminData } from "@/types/Admin";
-import { MarketsRsp } from "@/types/Markets";
+import { CategoryRspData, MarketsRsp } from "@/types/Markets";
+import { AddNewProductRsp, SingleProducts } from "@/types/Products";
 import { queryBuilder } from "@/Utils/helpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
@@ -24,7 +25,7 @@ const customBaseQuery = fetchBaseQuery({
 export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Admin", "Agents"],
+  tagTypes: ["Admin", "Agents", "Products"],
 
   // All endpoints
   endpoints: (builder) => ({
@@ -101,14 +102,22 @@ export const apiSLice = createApi({
     getAllProducts: builder.query({
       query: (params) =>
         `/admin/mile-12-market/product/my-product/get-all?${queryBuilder(params)}`,
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
-    createProducts: builder.mutation({
+    getProductById: builder.query<SingleProducts, string>({
+      query: (productId) =>
+        `/admin/mile-12-market/product/my-product/get-one/${productId}`,
+      providesTags: [{ type: "Products", id: "LIST" }],
+    }),
+
+    createProducts: builder.mutation<AddNewProductRsp, FormData>({
       query: (formData) => ({
         url: `/admin/mile-12-market/product/create`,
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     updateProducts: builder.mutation({
@@ -117,6 +126,16 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
+    }),
+
+    deleteProductsImgs: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/product/delete-image`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     deleteProducts: builder.mutation({
@@ -124,8 +143,10 @@ export const apiSLice = createApi({
         url: `/admin/mile-12-market/product/delete/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
     }),
     // === Products end ===
+
     createAgents: builder.mutation({
       query: (formData) => ({
         url: `/admin/agent/create`,
@@ -173,12 +194,20 @@ export const apiSLice = createApi({
       }),
     }),
 
-    getAllCategories: builder.query({
+    getCategoriesByMarketId: builder.query({
+      query: (id) => `/mile-12-market/category/listbymarket/${id}`,
+    }),
+
+    getAllCategories: builder.query<CategoryRspData, any>({
       query: () => `/mile-12-market/category/list`,
     }),
 
     getCategoryById: builder.query({
       query: (id) => `/mile-12-market/category/show/${id}`,
+    }),
+
+    getBrands: builder.query({
+      query: () => `/admin/brand/list-tbt-brands`,
     }),
 
     createCategories: builder.mutation({
@@ -227,6 +256,8 @@ export const {
   useCreateProductsMutation,
   useUpdateProductsMutation,
   useDeleteProductsMutation,
+  useGetProductByIdQuery,
+  useDeleteProductsImgsMutation,
   // ==== PRODUCTS START====
 
   // ==== MARKETS START====
@@ -242,7 +273,9 @@ export const {
   useGetAllMarketsQuery,
   useGetCategoryByIdQuery,
   useGetMarketByIdQuery,
+  useGetCategoriesByMarketIdQuery,
   // ==== MARKETS START====
 
   useGetAllStatsQuery,
+  useGetBrandsQuery,
 } = apiSLice;

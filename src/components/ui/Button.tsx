@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
     return (
       <Link
         to={href as string}
-        className={` ${className} main-btn flex place-items-center gap-2`}
+        className={` ${className} main-btn flex items-center justify-center gap-2`}
       >
         {children}
       </Link>
@@ -38,11 +38,11 @@ const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={` ${className} main-btn flex place-items-center gap-2`}
+      className={` ${className} main-btn flex items-center justify-center gap-2`}
       disabled={loading}
     >
       {loading && <Spinner />}
-      {children}
+      {!loading && children}
     </button>
   );
 };

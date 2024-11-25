@@ -7,6 +7,7 @@ import { reftechData } from "@/Utils/helpers";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
 
 const ProductMgt = () => {
   useUpdatePageName("Product Managements");
@@ -17,15 +18,13 @@ const ProductMgt = () => {
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    page: 2,
+    page: 1,
   });
   const { data, isLoading, refetch } = useGetAllProductsQuery(queryData);
 
   useEffect(() => {
     reftechData(refetch, "active", setLoading);
   }, [queryData]);
-
-  console.log(data);
 
   if (isLoading) {
     return (
@@ -44,10 +43,13 @@ const ProductMgt = () => {
     <main className="container py-10">
       <header className="mb-10 flex flex-wrap justify-between gap-3">
         <h4>All Available Products</h4>
-        <button className="main-btn flex items-center gap-3">
+        <Link
+          to="/add-new-product"
+          className="main-btn flex items-center gap-3"
+        >
           {" "}
           <FaPlus /> Add New Product
-        </button>
+        </Link>
       </header>
       <section>
         {loading["active"] ? (
