@@ -302,6 +302,10 @@ export const apiSLice = createApi({
       }),
       invalidatesTags: [{ type: "Brands", id: "LIST" }],
     }),
+
+    getPayments: builder.query({
+      query: () => `/admin/payment/list`,
+    }),
     //===== ORDERS ====
   }),
 });
@@ -360,4 +364,5 @@ export const {
   useCreateBrandsMutation,
   useUpdateBrandsMutation,
   useGetBrandByIdQuery,
+  useGetPaymentsQuery,
 } = apiSLice;
