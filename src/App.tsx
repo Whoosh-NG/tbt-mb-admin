@@ -1,17 +1,13 @@
-import { useEffect } from 'react';
-import { useAuthHook } from './Hooks/authHook';
-import { Toaster } from 'react-hot-toast';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import generalRoutes from './Layout/Routes/GeneralRutes';
-import dashboardRoutes from './Layout/Routes/DashboardRoutes';
-import DashboardLayout from './Layout/DashboardLayout';
-import NotFound from './Pages/404/NotFound';
-import AOS from 'aos';
-import useIdleTimeout from './Hooks/useIdleTimeout';
+import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import generalRoutes from "./Layout/Routes/GeneralRutes";
+import dashboardRoutes from "./Layout/Routes/DashboardRoutes";
+import DashboardLayout from "./Layout/DashboardLayout";
+import NotFound from "./Pages/404/NotFound";
+import AOS from "aos";
 
 const App = () => {
-  const { logoutUser } = useAuthHook();
-
   // AOS animation
   useEffect(() => {
     AOS.init();
@@ -20,8 +16,8 @@ const App = () => {
   // useIdleTimeout(logoutUser, 300000);
 
   return (
-    <main className='App'>
-      <Toaster position='top-center' />
+    <main className="App">
+      <Toaster position="top-center" />
       <Router>
         <Routes>
           {generalRoutes.map((route, idx: number) => (
@@ -35,7 +31,7 @@ const App = () => {
             />
           ))}
 
-          <Route path='*' element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </main>

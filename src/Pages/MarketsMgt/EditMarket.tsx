@@ -90,7 +90,7 @@ const EditMarket = () => {
 
     // If user doesn't change the address, the current address and coordinates should be append
     if (Object.keys(getData).length === 0) {
-      payload.append("address", values?.address);
+      payload.append("address", values?.address as string);
       payload.append("latitude", market?.data?.latitude);
       payload.append("longitude", market?.data?.longitude);
     }

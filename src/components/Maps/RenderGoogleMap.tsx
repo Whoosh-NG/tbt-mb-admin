@@ -1,6 +1,6 @@
 import { DirectionsRenderer, GoogleMap, Marker } from "@react-google-maps/api";
 
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 // const apiKey = 'AIzaSyAbwCWIXvLE11eZb7xhAu9YBzobJHbqt5I';
 // const Libraries = 'places';

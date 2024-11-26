@@ -1,4 +1,3 @@
-import { AddAdminData, updateAdminData } from "@/types/Admin";
 import { CategoryRspData, MarketsRsp } from "@/types/Markets";
 import { AddNewProductRsp, SingleProducts } from "@/types/Products";
 import { queryBuilder } from "@/Utils/helpers";
@@ -35,7 +34,7 @@ export const apiSLice = createApi({
       providesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
-    addNewAdmin: builder.mutation<any, AddAdminData>({
+    addNewAdmin: builder.mutation({
       query: (formData) => ({
         url: `/access/admin`,
         method: "POST",
@@ -45,7 +44,7 @@ export const apiSLice = createApi({
       invalidatesTags: [{ type: "Admin", id: "AdminList" }],
     }),
 
-    editAdmin: builder.mutation<any, updateAdminData>({
+    editAdmin: builder.mutation({
       query: ({ formData, id }) => ({
         url: `/access/update/admin/${id}`,
         method: "POST",
