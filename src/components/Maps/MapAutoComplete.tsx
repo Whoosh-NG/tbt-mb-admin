@@ -1,6 +1,5 @@
-'use client';
-import { Autocomplete } from '@react-google-maps/api';
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Autocomplete } from "@react-google-maps/api";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 
 const MapAutoComplete = ({
   setState,
@@ -27,7 +26,7 @@ const MapAutoComplete = ({
   const onLoadSearchBox = (ref: google.maps.places.Autocomplete) => {
     if (!inputRef) return;
 
-    const options = ['formatted_address', 'geometry'];
+    const options = ["formatted_address", "geometry"];
 
     ref.setFields(options);
 
@@ -38,7 +37,9 @@ const MapAutoComplete = ({
     if (!placeAutocomplete) return;
 
     const place = placeAutocomplete.getPlace();
-      if(setGetData){setGetData((prev: any) => ({ ...prev, [id]: place }))};
+    if (setGetData) {
+      setGetData((prev: any) => ({ ...prev, [id]: place }));
+    }
 
     if (place.geometry && place.geometry.location) {
       const newMarkerPosition = {
@@ -54,10 +55,10 @@ const MapAutoComplete = ({
       <Autocomplete onLoad={onLoadSearchBox} onPlaceChanged={onPlacesChanged}>
         <input
           ref={inputRef}
-          type='text'
+          type="text"
           id={id}
           placeholder={placeholder}
-          className='form-controls'
+          className="form-control"
           defaultValue={value}
           required={required}
         />

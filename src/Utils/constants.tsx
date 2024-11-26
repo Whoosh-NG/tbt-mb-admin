@@ -6,30 +6,36 @@ import Sellers from "@/components/Main/CustomerMgt/Sellers";
 import Markets from "@/components/Main/Markets/Markets";
 import Categories from "@/components/Main/Markets/Categories";
 import Brands from "@/components/Main/Markets/Brands";
-import Button from "@/components/ui/Button";
 import BrandAction from "@/components/Main/Markets/BrandAction";
+import AgentAction from "@/components/Main/CustomerMgt/AgentAction";
 
 export const userColData: IColData[] = [
   {
     name: "Name",
     selector: ({ first_name, last_name }) => `${first_name} ${last_name}`,
-    grow: 1.9,
   },
   {
     name: "Email",
     selector: ({ email }) => email,
-    grow: 2,
   },
   {
     name: "Phone Number",
     selector: ({ phone_number }) => phone_number,
-    grow: 2,
   },
 
   {
     name: "Joined Date",
-    selector: ({ createdAt }) => readableDateTime(createdAt),
-    grow: 1.9,
+    selector: ({ created_at }) => readableDateTime(created_at),
+    grow: 1.3,
+  },
+  {
+    name: "User Type",
+    width: "100px",
+    selector: ({ user_type }) => user_type,
+  },
+  {
+    name: "Action",
+    cell: (row) => <AgentAction id={row?.id} />,
   },
 
   //   {

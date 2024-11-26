@@ -25,7 +25,7 @@ const customBaseQuery = fetchBaseQuery({
 export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Admin", "Agents", "Products", "Brands", "Categories"],
+  tagTypes: ["Admin", "Agents", "Products", "Brands", "Categories", "Markets"],
 
   // All endpoints
   endpoints: (builder) => ({
@@ -147,6 +147,16 @@ export const apiSLice = createApi({
     }),
     // === Products end ===
 
+    markUserAsAgents: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/agent/toggle-agent`,
+        method: "POST",
+        body: formData,
+      }),
+
+      invalidatesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
     createAgents: builder.mutation({
       query: (formData) => ({
         url: `/admin/agent/create`,
@@ -172,10 +182,12 @@ export const apiSLice = createApi({
 
     getAllMarkets: builder.query<{ data: MarketsRsp[] }, any>({
       query: (params) => `/market/list?${queryBuilder(params)}`,
+      providesTags: [{ type: "Markets", id: "LIST" }],
     }),
 
     getMarketById: builder.query({
       query: (id) => `/market/show/${id}`,
+      providesTags: [{ type: "Markets", id: "LIST" }],
     }),
 
     createMarkets: builder.mutation({
@@ -184,6 +196,7 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: [{ type: "Markets", id: "LIST" }],
     }),
 
     updateMarkets: builder.mutation({
@@ -192,6 +205,7 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: [{ type: "Markets", id: "LIST" }],
     }),
 
     getCategoriesByMarketId: builder.query({
@@ -262,6 +276,34 @@ export const apiSLice = createApi({
       }),
       invalidatesTags: [{ type: "Categories", id: "LIST" }],
     }),
+
+    //===== ORDERS ====
+
+    getAllOrders: builder.query({
+      query: (params) =>
+        `/admin/mile-12-market/order/list?${queryBuilder(params)}`,
+      providesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+
+    getOrderbyId: builder.query({
+      query: (id) => `/admin/order/show/${id}`,
+      providesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+
+    getOrderByStatus: builder.query({
+      query: (status) => `/admin/order/status/${status}`,
+      providesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+
+    updateOrderStatus: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/order/update-status`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Brands", id: "LIST" }],
+    }),
+    //===== ORDERS ====
   }),
 });
 
@@ -295,6 +337,7 @@ export const {
   useUpdateAgentsQuery,
   useDeleteCategoryByIdMutation,
   useCreateAgentsMutation,
+  useMarkUserAsAgentsMutation,
   useCreateCategoriesMutation,
   useCreateMarketsMutation,
   useUpdateCategoriesMutation,
@@ -305,6 +348,13 @@ export const {
   useGetMarketByIdQuery,
   useGetCategoriesByMarketIdQuery,
   // ==== MARKETS START====
+
+  // ==== ORDERA START====
+  useGetAllOrdersQuery,
+  useGetOrderByStatusQuery,
+  useGetOrderbyIdQuery,
+  useUpdateOrderStatusMutation,
+  // ==== ORDERA END====
 
   useGetAllStatsQuery,
   useGetAllBrandsQuery,

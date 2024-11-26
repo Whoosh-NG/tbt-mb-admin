@@ -1,10 +1,7 @@
 import {
-  useCreateBrandsMutation,
   useCreateCategoriesMutation,
   useGetAllMarketsQuery,
-  useGetBrandByIdQuery,
   useGetCategoryByIdQuery,
-  useUpdateBrandsMutation,
   useUpdateCategoriesMutation,
 } from "@/api/apiSlice";
 import PopUp from "@/components/popUps/PopUp";
@@ -17,12 +14,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import Button from "@/components/ui/Button";
 import Skeleton from "react-loading-skeleton";
-
-type Categ = {
-  name: string;
-  description: string;
-  market_id: string;
-};
 
 const AddNewCategory: FC<IModal & { categId?: number }> = ({
   id,
@@ -126,7 +117,7 @@ const AddNewCategory: FC<IModal & { categId?: number }> = ({
             ))}
           </ul>
         ) : (
-          <form onSubmit={handleSubmit} className="container space-y-4 py-3">
+          <form onSubmit={handleSubmit} className="container space-y-2 py-3">
             <FormInput
               id="name"
               name="name"
@@ -191,7 +182,7 @@ const AddNewCategory: FC<IModal & { categId?: number }> = ({
               </Button>
               <Button type="submit" loading={isLoading || updating}>
                 {" "}
-                Add Category
+                {categId ? "Save Changes" : "Add Category"}
               </Button>
             </div>
           </form>

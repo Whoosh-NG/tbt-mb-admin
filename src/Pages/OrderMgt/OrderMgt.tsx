@@ -1,8 +1,10 @@
+import { useGetAllOrdersQuery } from "@/api/apiSlice";
 
 const OrderMgt = () => {
-  return (
-    <div>OrderMgt</div>
-  )
-}
+  const { data } = useGetAllOrdersQuery({});
 
-export default OrderMgt
+  console.log(data);
+  return <div>OrderMgt</div>;
+};
+
+export default OrderMgt;

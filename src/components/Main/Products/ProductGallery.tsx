@@ -9,9 +9,11 @@ const ProductGallery = ({
   className,
   loading,
   action,
+  noDelete,
 }: {
   imageList: ProductIamges[];
   modal?: boolean;
+  noDelete?: boolean;
   loading?: { [key: string]: boolean };
   className?: string;
   action?: (id: string) => void;
@@ -52,14 +54,16 @@ const ProductGallery = ({
                 className="!h-full object-cover"
               />
             </figure>
-            <Button
-              type="button"
-              className="mt-2 w-full !bg-negative !px-2 !py-1"
-              loading={loading && loading[`${id}`]}
-              onClick={() => action && action(`${id}`)}
-            >
-              Delete
-            </Button>
+            {!noDelete && (
+              <Button
+                type="button"
+                className="mt-2 w-full !bg-negative !px-2 !py-1"
+                loading={loading && loading[`${id}`]}
+                onClick={() => action && action(`${id}`)}
+              >
+                Delete
+              </Button>
+            )}
           </div>
         ))}
       </article>

@@ -202,3 +202,13 @@ export type ServiceCharge = {
     app_type: string;
   };
 };
+
+export type AddNewMarketData = {
+  name: string;
+  address?: string;
+  latitude?: string;
+  longitude?: string;
+  banner: string;
+  agent_id: string;
+  description: string;
+};

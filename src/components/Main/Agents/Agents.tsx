@@ -2,7 +2,6 @@ import { useGetAllAgentsQuery } from "@/api/apiSlice";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
 import { selectGlobal } from "@/Redux/Features/globalSlice";
 import { useAppSelector } from "@/Redux/reduxHooks";
-import React from "react";
 import { FaPlus } from "react-icons/fa";
 import AddNewAgent from "./AddNewAgent";
 import Button from "@/components/ui/Button";
@@ -10,7 +9,7 @@ import Button from "@/components/ui/Button";
 const Agents = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
-  const { data, isLoading } = useGetAllAgentsQuery({});
+  const { data } = useGetAllAgentsQuery({});
   console.log(data);
   return (
     <>

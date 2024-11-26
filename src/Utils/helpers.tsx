@@ -62,3 +62,5 @@ export const reftechData = async (
     setLoading({ [id]: false });
   }
 };
+
+export const apiKey = import.meta.env.VITE_GOOGLE_MAP;

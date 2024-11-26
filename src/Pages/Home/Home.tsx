@@ -1,5 +1,4 @@
 import { useGetAllStatsQuery } from "@/api/apiSlice";
-import Agents from "@/components/Main/Agents/Agents";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
 
 const Home = () => {
@@ -43,8 +42,6 @@ const Home = () => {
           </li>
         ))}
       </ul>
-
-      <Agents />
     </main>
   );
 };

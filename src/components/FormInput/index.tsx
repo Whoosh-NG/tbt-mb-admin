@@ -82,7 +82,7 @@ const FormInput = ({
           className={error ? "errors form-control" : "form-control"}
           placeholder={placeholder}
           disabled={disabled}
-          defaultValue={defaultValue}
+          value={defaultValue}
         ></textarea>
       ) : type === "select" ? (
         <select
@@ -92,7 +92,7 @@ const FormInput = ({
           onBlur={onBlur}
           className={error ? "errors form-control" : "form-control"}
           disabled={disabled}
-          defaultValue={defaultValue}
+          value={defaultValue}
         >
           <option> {placeholder} </option>
           {selectOptions?.map((item) => (
@@ -116,7 +116,7 @@ const FormInput = ({
             className={error ? "errors !m-0" : "!m-0"}
             placeholder={placeholder}
             disabled={disabled}
-            defaultChecked={defaultCheck}
+            checked={defaultCheck}
           />
           <small className="text-[var(--secColor)]">{label} </small>
         </div>
@@ -131,7 +131,7 @@ const FormInput = ({
             className={error ? "errors form-control" : "form-control"}
             placeholder={placeholder}
             disabled={disabled}
-            defaultValue={defaultValue}
+            value={defaultValue}
           />{" "}
           <span
             className="absolute right-6 top-[35%] cursor-pointer"
@@ -154,7 +154,7 @@ const FormInput = ({
           className={error ? "errors form-control" : "form-control"}
           placeholder={placeholder}
           disabled={disabled}
-          defaultValue={defaultValue}
+          value={defaultValue}
           {...rest}
         />
       )}

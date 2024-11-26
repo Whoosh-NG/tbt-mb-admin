@@ -2,20 +2,21 @@ import { useGetAllUsersQuery } from "@/api/apiSlice";
 import ServerPaginate from "@/components/ServerPaginate";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
 import { userColData } from "@/Utils/constants";
+import { reftechData } from "@/Utils/helpers";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 
 const AllCustomers = () => {
-  const { handleSearch } = useGlobalHooks();
+  const { handleSearch, setLoading, loading } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const naviagte = useNavigate();
 
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    page: 2,
+    page: 1,
   });
 
   const { data, isLoading, refetch } = useGetAllUsersQuery(queryData);
@@ -35,40 +36,51 @@ const AllCustomers = () => {
   };
 
   useEffect(() => {
-    refetch();
+    reftechData(refetch, "active", setLoading);
   }, [queryData]);
+
+  if (isLoading) {
+    return (
+      <article className="space-y-3">
+        <Skeleton height={50} count={8} />
+      </article>
+    );
+  }
 
   return (
     <main>
-      {isLoading ? (
-        <article className="space-y-3">
-          <Skeleton height={100} />
-        </article>
-      ) : (
-        <section className="relative">
+      <section className="relative">
+        {loading["active"] ? (
+          <ul className="space-y-4">
+            {Array.from({ length: 6 }).map((_, idx) => (
+              <li key={idx} className="">
+                <Skeleton containerClassName="" height={50} />
+              </li>
+            ))}
+          </ul>
+        ) : (
           <DataTable
             columns={userColData}
             data={filteredData}
             customStyles={tableCustomStyles}
             onRowClicked={handleRowClicked}
-            className="cursor-pointer pb-20"
+            className="cursor-pointer"
           />
-
-          <div className="">
-            <ServerPaginate
-              data={data?.data?.data}
-              handleSearch={handleSearch}
-              currentPage={filteredData}
-              setCurrentPage={setFilteredData}
-              searchParams="firstName"
-              itemsPerPage={queryData?.page as number}
-              totalItemsCount={data?.data?.last_page}
-              setQueryData={setQueryData}
-              keyIndex="page"
-            />
-          </div>
-        </section>
-      )}
+        )}
+      </section>
+      <div className="">
+        <ServerPaginate
+          data={data?.data?.data}
+          handleSearch={handleSearch}
+          currentPage={filteredData}
+          setCurrentPage={setFilteredData}
+          searchParams="firstName"
+          itemsPerPage={queryData?.page as number}
+          totalItemsCount={data?.data?.last_page}
+          setQueryData={setQueryData}
+          keyIndex="page"
+        />
+      </div>
     </main>
   );
 };

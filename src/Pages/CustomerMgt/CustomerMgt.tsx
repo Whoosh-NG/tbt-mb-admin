@@ -10,7 +10,7 @@ const CustomerMgt = () => {
   const activeTab = query.get("tab") || "tab1";
 
   return (
-    <main className="container py-10">
+    <main className="container py-10 pb-20">
       <h2>All users</h2>
 
       <ul className="flex items-center">

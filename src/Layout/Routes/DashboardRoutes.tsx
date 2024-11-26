@@ -3,6 +3,8 @@ import Administrators from "@/Pages/Administrators/Administrators";
 import CustomerMgt from "@/Pages/CustomerMgt/CustomerMgt";
 import Home from "@/Pages/Home/Home";
 import LogisticsMgt from "@/Pages/LogisticsMgt/LogisticsMgt";
+import AddNewMarkets from "@/Pages/MarketsMgt/AddNewMarkets";
+import EditMarket from "@/Pages/MarketsMgt/EditMarket";
 import MarketsMgt from "@/Pages/MarketsMgt/MarketsMgt";
 import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
 import AddNewProduct from "@/Pages/ProductMgt/AddNewProduct";
@@ -37,6 +39,16 @@ const dashboardRoutes: Route[] = [
     path: "/markets-management",
     name: "Markets Management",
     element: <MarketsMgt />,
+  },
+  {
+    path: "/add-new-market",
+    name: "Add New Market",
+    element: <AddNewMarkets />,
+  },
+  {
+    path: "/edit-market/:id",
+    name: "Edit Market",
+    element: <EditMarket />,
   },
   {
     path: "/customers-management",
