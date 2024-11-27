@@ -1,10 +1,13 @@
 import RoutingTabTitle from "@/components/ui/Tabs/RoutingTabTitle";
 import TabContents from "@/components/ui/Tabs/TabContents";
+import useUpdatePageName from "@/Hooks/useUpdatePageName";
 import { USerTabs } from "@/Utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 
 const CustomerMgt = () => {
+  useUpdatePageName("Customers Management");
+
   const [query] = useSearchParams();
 
   const activeTab = query.get("tab") || "tab1";

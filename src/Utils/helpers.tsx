@@ -39,7 +39,17 @@ export const formatTimeString = (timeString: string) => {
   return time.format("hh:mm:ss A");
 };
 
-export const formatNumInThousands = (value: number | string) => {
+export const formatNumInThousands = (
+  value?: number | string,
+  kmVal?: boolean,
+) => {
+  // Format using numeral.js
+  return kmVal
+    ? numeral(value).format("0a")
+    : numeral(value).format("0,0.0[00]");
+};
+
+export const formatNumInThousandsV2 = (value: number | string) => {
   // Format using numeral.js
   return numeral(value).format("0.00a");
 };

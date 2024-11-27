@@ -7,6 +7,7 @@ import AddNewMarkets from "@/Pages/MarketsMgt/AddNewMarkets";
 import EditMarket from "@/Pages/MarketsMgt/EditMarket";
 import MarketsMgt from "@/Pages/MarketsMgt/MarketsMgt";
 import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
+import ViewOrder from "@/Pages/OrderMgt/ViewOrder";
 import AddNewProduct from "@/Pages/ProductMgt/AddNewProduct";
 import EditProduct from "@/Pages/ProductMgt/EditProduct";
 import ProductMgt from "@/Pages/ProductMgt/ProductMgt";
@@ -69,6 +70,12 @@ const dashboardRoutes: Route[] = [
     path: "/orders-management",
     name: "Order Management",
     element: <OrderMgt />,
+  },
+
+  {
+    path: "/view-order/:id",
+    name: "Order Management",
+    element: <ViewOrder />,
   },
 
   {

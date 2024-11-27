@@ -6,7 +6,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 
 const MarketsMgt = () => {
-  useUpdatePageName("Markets");
+  useUpdatePageName("Markets Management");
 
   const [query] = useSearchParams();
 
