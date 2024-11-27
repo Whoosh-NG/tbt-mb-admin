@@ -24,7 +24,15 @@ const customBaseQuery = fetchBaseQuery({
 export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Admin", "Agents", "Products", "Brands", "Categories", "Markets"],
+  tagTypes: [
+    "Admin",
+    "Agents",
+    "Products",
+    "Brands",
+    "Categories",
+    "Markets",
+    "Orders",
+  ],
 
   // All endpoints
   endpoints: (builder) => ({
@@ -281,17 +289,17 @@ export const apiSLice = createApi({
     getAllOrders: builder.query({
       query: (params) =>
         `/admin/mile-12-market/order/list?${queryBuilder(params)}`,
-      providesTags: [{ type: "Brands", id: "LIST" }],
+      providesTags: [{ type: "Orders", id: "LIST" }],
     }),
 
     getOrderbyId: builder.query({
       query: (id) => `/admin/order/show/${id}`,
-      providesTags: [{ type: "Brands", id: "LIST" }],
+      providesTags: [{ type: "Orders", id: "LIST" }],
     }),
 
     getOrderByStatus: builder.query({
       query: (status) => `/admin/order/status/${status}`,
-      providesTags: [{ type: "Brands", id: "LIST" }],
+      providesTags: [{ type: "Orders", id: "LIST" }],
     }),
 
     updateOrderStatus: builder.mutation({
@@ -300,11 +308,15 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
-      invalidatesTags: [{ type: "Brands", id: "LIST" }],
+      invalidatesTags: [{ type: "Orders", id: "LIST" }],
     }),
 
     getPayments: builder.query({
-      query: () => `/admin/payment/list`,
+      query: (params) =>
+        `/admin/mile-12-market/payment/list?${queryBuilder(params)}`,
+    }),
+    getPaymentById: builder.query({
+      query: (id) => `/admin/payment/show/${id}`,
     }),
     //===== ORDERS ====
   }),
@@ -365,4 +377,5 @@ export const {
   useUpdateBrandsMutation,
   useGetBrandByIdQuery,
   useGetPaymentsQuery,
+  useGetPaymentByIdQuery,
 } = apiSLice;

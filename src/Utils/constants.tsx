@@ -1,5 +1,5 @@
 import { IColData } from "@/types/GlobalInterfaces";
-import { readableDateTime } from "./helpers";
+import { formatNumInThousands, readableDateTime } from "./helpers";
 import AllCustomers from "@/components/Main/CustomerMgt/AllCustomers";
 import Buyers from "@/components/Main/CustomerMgt/Buyers";
 import Sellers from "@/components/Main/CustomerMgt/Sellers";
@@ -8,6 +8,7 @@ import Categories from "@/components/Main/Markets/Categories";
 import Brands from "@/components/Main/Markets/Brands";
 import BrandAction from "@/components/Main/Markets/BrandAction";
 import AgentAction from "@/components/Main/CustomerMgt/AgentAction";
+import Button from "@/components/ui/Button";
 
 export const userColData: IColData[] = [
   {
@@ -79,6 +80,90 @@ export const brandColData = (): IColData[] => {
     {
       name: "Action",
       cell: (row) => <BrandAction id={row?.id} />,
+    },
+  ];
+};
+
+export const orderColData = (): IColData[] => {
+  return [
+    {
+      name: "Order ID",
+      selector: ({ id }) => id,
+      width: "100px",
+    },
+    {
+      name: "Order ref.",
+      selector: ({ order_reference }) => order_reference,
+    },
+    {
+      name: "Payment Method",
+      selector: ({ payment_method }) => payment_method,
+    },
+    {
+      name: "Amount",
+      selector: ({ total }) => `₦${formatNumInThousands(total)}`,
+    },
+    {
+      name: "Username",
+      selector: ({ user }) => `${user?.first_name} ${user?.last_name}`,
+      grow: 2,
+    },
+
+    {
+      name: "Date",
+      selector: ({ created_at }) => readableDateTime(created_at),
+      grow: 2,
+    },
+    {
+      name: "Status",
+      selector: ({ payment_status }) => payment_status,
+      width: "100px",
+    },
+    {
+      name: "Action",
+      width: "100px",
+      cell: ({ id }) => (
+        <Button link href={`/view-order/${id}`}>
+          View
+        </Button>
+      ),
+    },
+  ];
+};
+
+export const paymentColData = (): IColData[] => {
+  return [
+    {
+      name: "Order ref.",
+      selector: ({ reference }) => reference,
+    },
+    {
+      name: "Channel",
+      selector: ({ channel }) => channel,
+      width: "100px",
+    },
+    {
+      name: "Amount",
+      selector: ({ amount }) => `₦${formatNumInThousands(amount)}`,
+    },
+    {
+      name: "Order ID",
+      selector: ({ order_id }) => order_id,
+      width: "100px",
+    },
+    {
+      name: "Username",
+      selector: ({ user }) => `${user?.first_name} ${user?.last_name}`,
+    },
+
+    {
+      name: "Date",
+      selector: ({ created_at }) => readableDateTime(created_at),
+      grow: 2,
+    },
+    {
+      name: "Status",
+      selector: ({ status }) => status,
     },
   ];
 };

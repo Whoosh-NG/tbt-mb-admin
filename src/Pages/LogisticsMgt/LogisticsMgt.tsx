@@ -1,8 +1,9 @@
+import useUpdatePageName from "@/Hooks/useUpdatePageName";
 
 const LogisticsMgt = () => {
-  return (
-    <div>LogisticsMgt</div>
-  )
-}
+  useUpdatePageName("Logistics Management");
 
-export default LogisticsMgt
+  return <div>LogisticsMgt</div>;
+};
+
+export default LogisticsMgt;
