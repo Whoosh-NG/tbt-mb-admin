@@ -6,6 +6,7 @@ import Sellers from "@/components/Main/CustomerMgt/Sellers";
 import BrandAction from "@/components/Main/Markets/BrandAction";
 import AgentAction from "@/components/Main/Markets/Agents/AgentAction";
 import Button from "@/components/ui/Button";
+import LogisticsAction from "@/components/Main/Logistics/LogisticsAction";
 
 export const userColData: IColData[] = [
   {
@@ -215,6 +216,48 @@ export const agentColData = (market?: boolean): IColData[] => {
     {
       name: "Action",
       cell: (row) => <AgentAction market={market} id={row?.id} />,
+    },
+  ];
+};
+
+export const logisticsColData = (): IColData[] => {
+  return [
+    {
+      name: "ID",
+      selector: ({ id }) => id,
+      width: "100px",
+    },
+    {
+      name: "From",
+      selector: ({ from }) => from,
+    },
+    {
+      name: "To",
+      selector: ({ to }) => to,
+    },
+    {
+      name: "Base Fare",
+      selector: ({ base_fare }) => `₦${formatNumInThousands(base_fare)}`,
+    },
+    {
+      name: "Minimum Fare",
+      selector: ({ minimum_fare }) => `₦${formatNumInThousands(minimum_fare)}`,
+    },
+
+    {
+      name: "Price Per KM",
+      selector: ({ per_km }) => `₦${formatNumInThousands(per_km)}`,
+    },
+    {
+      name: "Date Crerated",
+      selector: ({ created_at }) => readableDateTime(created_at, true),
+      grow: 1.5,
+    },
+
+    {
+      name: "Action",
+      cell: (row) => <LogisticsAction id={row?.id} />,
+      grow: 1.5,
     },
   ];
 };

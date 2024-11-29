@@ -32,6 +32,7 @@ export const apiSLice = createApi({
     "Categories",
     "Markets",
     "Orders",
+    "Pickup",
   ],
 
   // All endpoints
@@ -334,10 +335,56 @@ export const apiSLice = createApi({
       query: (id) => `/admin/payment/show/${id}`,
     }),
     //===== ORDERS ====
+
+    //===== LOGISTICS ====
+    createPickupCharge: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/pickup-charge/create`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    updatePickupCharge: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/pickup-charge/update`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    deletePickupCharge: builder.mutation({
+      query: (id) => ({
+        url: `/admin/pickup-charge/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    getAllPickupCharge: builder.query({
+      query: () => `/admin/pickup-charge/list`,
+
+      providesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    getPickupChargeById: builder.query({
+      query: (id) => `/admin/pickup-charge/show/${id}`,
+
+      providesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+    //===== LOGISTICS ====
   }),
 });
 
 export const {
+  useCreatePickupChargeMutation,
+  useUpdatePickupChargeMutation,
+  useDeletePickupChargeMutation,
+  useGetAllPickupChargeQuery,
+  useGetPickupChargeByIdQuery,
+
   // ==== ADINM START====
   useAddNewAdminMutation,
   useEditAdminMutation,

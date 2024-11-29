@@ -5,7 +5,6 @@ import {
 } from "@/api/apiSlice";
 import AddNewCategory from "@/components/Main/Markets/AddNewCategory";
 import ProductGallery from "@/components/Main/Products/ProductGallery";
-import Button from "@/components/ui/Button";
 import GoBackBtn from "@/components/ui/GoBackBtn";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
@@ -28,8 +27,6 @@ const ViewMarket = () => {
   const { data } = useGetCategoriesByMarketIdQuery(id);
   const { data: agents, isLoading: agenting } =
     useGetAllAgentsbyMarketIdQuery(id);
-
-  console.log(agents);
 
   const { data: market, isLoading } = useGetMarketByIdQuery(id as string, {
     refetchOnFocus: true,
