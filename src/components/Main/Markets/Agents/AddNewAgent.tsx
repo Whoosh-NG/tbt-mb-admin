@@ -11,9 +11,11 @@ import Button from "@/components/ui/Button";
 
 const AddNewAgent: FC<IModal> = ({ id, close }) => {
   const initialValues = {
-    name: "",
+    first_name: "",
+    last_name: "",
     phone_number: "",
     email: "",
+    password: "",
   };
 
   const [newAgent, { isLoading }] = useCreateAgentsMutation();
@@ -36,9 +38,11 @@ const AddNewAgent: FC<IModal> = ({ id, close }) => {
   };
 
   const shippingSchema = Yup.object().shape({
-    name: Yup.string().required("Please enter name"),
+    first_name: Yup.string().required("Please enter first name"),
+    last_name: Yup.string().required("Please enter last name"),
     phone_number: Yup.string().required("Phone number is required"),
     email: Yup.string().required("email is required"),
+    password: Yup.string().required("Password is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -59,17 +63,33 @@ const AddNewAgent: FC<IModal> = ({ id, close }) => {
         </header>
         <hr />
 
-        <form onSubmit={handleSubmit} className="container space-y-4 py-6">
+        <form
+          onSubmit={handleSubmit}
+          className="container flex flex-wrap gap-4 py-6"
+        >
           <FormInput
-            id="name"
-            name="name"
+            id="first_name"
+            name="first_name"
             type="text"
             label="First Name"
             placeholder="Enter first name"
-            defaultValue={values.name}
+            defaultValue={values.first_name}
             onBlur={handleBlur}
             onChange={handleChange}
-            error={touched.name && errors.name}
+            error={touched.first_name && errors.first_name}
+            className="inputWrapper"
+          />
+          <FormInput
+            id="last_name"
+            name="last_name"
+            type="text"
+            label="First Name"
+            placeholder="Enter first name"
+            defaultValue={values.last_name}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            error={touched.last_name && errors.last_name}
+            className="inputWrapper"
           />
           <FormInput
             id="email"
@@ -81,20 +101,34 @@ const AddNewAgent: FC<IModal> = ({ id, close }) => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.email && errors.email}
+            className="inputWrapper"
           />
           <FormInput
             id="phone_number"
             name="phone_number"
-            type="text"
+            type="tel"
             label="Phone number"
             placeholder="Enter phone number"
             defaultValue={values.phone_number}
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.phone_number && errors.phone_number}
+            className="inputWrapper"
+          />
+          <FormInput
+            id="password"
+            name="password"
+            type="password"
+            label="Enter password"
+            placeholder="Enter password"
+            defaultValue={values.password}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            error={touched.password && errors.password}
+            className="inputWrapper"
           />
 
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-6 flex w-full items-center justify-end gap-3">
             <button className="outline-btn" type="button">
               {" "}
               Cancel

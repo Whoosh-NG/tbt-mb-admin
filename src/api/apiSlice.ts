@@ -32,6 +32,7 @@ export const apiSLice = createApi({
     "Categories",
     "Markets",
     "Orders",
+    "Pickup",
   ],
 
   // All endpoints
@@ -164,6 +165,16 @@ export const apiSLice = createApi({
       invalidatesTags: [{ type: "Agents", id: "LIST" }],
     }),
 
+    addAgentToMarket: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/agent/add-to-market`,
+        method: "POST",
+        body: formData,
+      }),
+
+      invalidatesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
     createAgents: builder.mutation({
       query: (formData) => ({
         url: `/admin/agent/create`,
@@ -176,6 +187,11 @@ export const apiSLice = createApi({
 
     getAllAgents: builder.query({
       query: (params) => `/agent/list?${queryBuilder(params)}`,
+      providesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
+    getAllAgentsbyMarketId: builder.query({
+      query: (id) => `/admin/agent/list-agents-in-market/${id}`,
       providesTags: [{ type: "Agents", id: "LIST" }],
     }),
 
@@ -319,10 +335,56 @@ export const apiSLice = createApi({
       query: (id) => `/admin/payment/show/${id}`,
     }),
     //===== ORDERS ====
+
+    //===== LOGISTICS ====
+    createPickupCharge: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/pickup-charge/create`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    updatePickupCharge: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/pickup-charge/update`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    deletePickupCharge: builder.mutation({
+      query: (id) => ({
+        url: `/admin/pickup-charge/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    getAllPickupCharge: builder.query({
+      query: () => `/admin/pickup-charge/list`,
+
+      providesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+
+    getPickupChargeById: builder.query({
+      query: (id) => `/admin/pickup-charge/show/${id}`,
+
+      providesTags: [{ type: "Pickup", id: "LIST" }],
+    }),
+    //===== LOGISTICS ====
   }),
 });
 
 export const {
+  useCreatePickupChargeMutation,
+  useUpdatePickupChargeMutation,
+  useDeletePickupChargeMutation,
+  useGetAllPickupChargeQuery,
+  useGetPickupChargeByIdQuery,
+
   // ==== ADINM START====
   useAddNewAdminMutation,
   useEditAdminMutation,
@@ -362,6 +424,8 @@ export const {
   useGetCategoryByIdQuery,
   useGetMarketByIdQuery,
   useGetCategoriesByMarketIdQuery,
+  useAddAgentToMarketMutation,
+  useGetAllAgentsbyMarketIdQuery,
   // ==== MARKETS START====
 
   // ==== ORDERA START====

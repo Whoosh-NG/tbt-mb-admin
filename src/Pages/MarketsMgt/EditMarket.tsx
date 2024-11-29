@@ -162,7 +162,7 @@ const EditMarket = () => {
     <main className="container my-10">
       <header className="flex items-center gap-2">
         <GoBackBtn className="outline-btn" />
-        <h3>Edit Product</h3>
+        <h3>Edit Market</h3>
       </header>
 
       <section className="space-y-4 py-6">
