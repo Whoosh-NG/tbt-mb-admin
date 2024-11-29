@@ -164,6 +164,16 @@ export const apiSLice = createApi({
       invalidatesTags: [{ type: "Agents", id: "LIST" }],
     }),
 
+    addAgentToMarket: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/agent/add-to-market`,
+        method: "POST",
+        body: formData,
+      }),
+
+      invalidatesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
     createAgents: builder.mutation({
       query: (formData) => ({
         url: `/admin/agent/create`,
@@ -176,6 +186,11 @@ export const apiSLice = createApi({
 
     getAllAgents: builder.query({
       query: (params) => `/agent/list?${queryBuilder(params)}`,
+      providesTags: [{ type: "Agents", id: "LIST" }],
+    }),
+
+    getAllAgentsbyMarketId: builder.query({
+      query: (id) => `/admin/agent/list-agents-in-market/${id}`,
       providesTags: [{ type: "Agents", id: "LIST" }],
     }),
 
@@ -362,6 +377,8 @@ export const {
   useGetCategoryByIdQuery,
   useGetMarketByIdQuery,
   useGetCategoriesByMarketIdQuery,
+  useAddAgentToMarketMutation,
+  useGetAllAgentsbyMarketIdQuery,
   // ==== MARKETS START====
 
   // ==== ORDERA START====

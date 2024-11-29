@@ -22,7 +22,7 @@ const Markets = () => {
   return (
     <main className="container py-10">
       <header className="mb-10 flex flex-wrap justify-between gap-3">
-        <h4>All Available Products</h4>
+        <h4>All Available Markets</h4>
         <Button
           link
           href="/add-new-market"
@@ -47,20 +47,28 @@ const Markets = () => {
                 <h4>{name} </h4>
               </div>
 
-              <div className="container flex flex-wrap justify-between gap-3">
+              <div className="grid grid-cols-3 justify-between gap-1">
                 <Button
                   link
-                  href={`/edit-market/${id}`}
-                  className="w-full md:w-5/12"
+                  href={`/markets-management/edit/${id}`}
+                  className="!px-1"
                 >
                   Edit
                 </Button>
                 <Button
                   type="button"
-                  className="w-full !bg-negative md:w-5/12"
+                  className="!bg-negative !px-1"
                   loading={isLoading}
                 >
                   Delete
+                </Button>
+
+                <Button
+                  link
+                  href={`/markets-management/view/${id}`}
+                  className="outline-btn !bg-transparent !px-1"
+                >
+                  View
                 </Button>
               </div>
             </li>

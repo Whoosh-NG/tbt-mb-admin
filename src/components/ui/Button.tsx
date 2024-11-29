@@ -21,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
   link,
   loading,
+  disabled,
   // ...rest
 }) => {
   if (link) {
@@ -39,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       className={` ${className} main-btn flex items-center justify-center gap-2`}
-      disabled={loading}
+      disabled={loading || disabled}
     >
       {loading && <Spinner />}
       {!loading && children}

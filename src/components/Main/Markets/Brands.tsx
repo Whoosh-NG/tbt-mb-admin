@@ -26,7 +26,7 @@ const Brands = () => {
   if (isLoading) {
     return (
       <main className="container py-10">
-        <ul className="grid w-full grid-cols-4 justify-between gap-4 py-10">
+        <ul className="space-y-4 py-10">
           {Array.from({ length: 12 }).map((_, idx) => (
             <li key={idx} className="">
               <Skeleton containerClassName="" height={150} />

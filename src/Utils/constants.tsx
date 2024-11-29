@@ -3,11 +3,8 @@ import { formatNumInThousands, readableDateTime } from "./helpers";
 import AllCustomers from "@/components/Main/CustomerMgt/AllCustomers";
 import Buyers from "@/components/Main/CustomerMgt/Buyers";
 import Sellers from "@/components/Main/CustomerMgt/Sellers";
-import Markets from "@/components/Main/Markets/Markets";
-import Categories from "@/components/Main/Markets/Categories";
-import Brands from "@/components/Main/Markets/Brands";
 import BrandAction from "@/components/Main/Markets/BrandAction";
-import AgentAction from "@/components/Main/CustomerMgt/AgentAction";
+import AgentAction from "@/components/Main/Markets/Agents/AgentAction";
 import Button from "@/components/ui/Button";
 
 export const userColData: IColData[] = [
@@ -33,10 +30,6 @@ export const userColData: IColData[] = [
     name: "User Type",
     width: "100px",
     selector: ({ user_type }) => user_type,
-  },
-  {
-    name: "Action",
-    cell: (row) => <AgentAction id={row?.id} />,
   },
 
   //   {
@@ -193,27 +186,35 @@ export const USerTabs = {
   ],
 };
 
-export const marketsTabs = {
-  TabTitle: [
+export const agentColData = (market?: boolean): IColData[] => {
+  return [
     {
-      id: "tab1",
-      title: "Markets",
+      name: "Name",
+      selector: ({ first_name, last_name }) => `${first_name} ${last_name}`,
+    },
+    {
+      name: "Email",
+      selector: ({ email }) => email,
+    },
+    {
+      name: "Phone Number",
+      selector: ({ phone_number }) => phone_number,
     },
 
     {
-      id: "tab2",
-      title: "Categories",
+      name: "Joined Date",
+      selector: ({ created_at }) => readableDateTime(created_at),
+      grow: 1.3,
+    },
+    {
+      name: "User Type",
+      width: "100px",
+      selector: ({ user_type }) => user_type,
     },
 
     {
-      id: "tab3",
-      title: "Brands",
+      name: "Action",
+      cell: (row) => <AgentAction market={market} id={row?.id} />,
     },
-  ],
-
-  TabContents: [
-    { id: "tab1", comp: <Markets /> },
-    { id: "tab2", comp: <Categories /> },
-    { id: "tab3", comp: <Brands /> },
-  ],
+  ];
 };
