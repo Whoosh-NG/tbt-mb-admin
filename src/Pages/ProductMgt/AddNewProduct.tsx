@@ -114,7 +114,7 @@ const AddNewProduct = () => {
       <section className="space-y-4 py-6">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-wrap justify-between gap-3"
+          className="flex flex-wrap justify-between gap-x-2 gap-y-4"
         >
           <FormInput
             id="name"
@@ -169,7 +169,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.minimum_purchase && errors.minimum_purchase}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
           />
           <FormInput
             id="unit"
@@ -180,7 +180,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.unit && errors.unit}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
           />
           <FormInput
             id="weight"
@@ -191,7 +191,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.weight && errors.weight}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
           />
           <FormInput
             id="quantity"
@@ -202,7 +202,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.quantity && errors.quantity}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
           />
           <FormInput
             id="market_type"
@@ -214,7 +214,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.market_type && errors.market_type}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
           />
 
           {marketing ? (
@@ -233,7 +233,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.market_id && errors.market_id}
-              className="w-full md:w-[24%]"
+              className="w-full md:w-[23%]"
             />
           )}
 
@@ -253,7 +253,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.category_id && errors.category_id}
-              className="w-full md:w-[24%]"
+              className="w-full md:w-[23%]"
             />
           )}
 
@@ -273,7 +273,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.brand_id && errors.brand_id}
-              className="w-full md:w-[24%]"
+              className="w-full md:w-[23%]"
             />
           )}
           <FormInput
@@ -295,7 +295,7 @@ const AddNewProduct = () => {
                 }));
               }
             }}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
             multiple
             accept="image/*"
           />
@@ -317,7 +317,7 @@ const AddNewProduct = () => {
                 }));
               }
             }}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
             accept="image/*"
           />
           <FormInput
@@ -330,7 +330,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.other_info && errors.other_info}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
           />
           <FormInput
             id="is_top_deal"
@@ -340,7 +340,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.is_top_deal && errors.is_top_deal}
-            className="w-full md:w-[24%]"
+            className="w-full md:w-[23%]"
             accept="image/*"
           />
           <FormInput

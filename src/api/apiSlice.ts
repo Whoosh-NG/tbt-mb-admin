@@ -1,5 +1,9 @@
 import { CategoryRspData, MarketsRsp } from "@/types/Markets";
-import { AddNewProductRsp, SingleProducts } from "@/types/Products";
+import {
+  AddNewProductRsp,
+  ProductsRspData,
+  SingleProducts,
+} from "@/types/Products";
 import { queryBuilder } from "@/Utils/helpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
@@ -116,6 +120,15 @@ export const apiSLice = createApi({
     getProductById: builder.query<SingleProducts, string>({
       query: (productId) =>
         `/admin/mile-12-market/product/my-product/get-one/${productId}`,
+      providesTags: [{ type: "Products", id: "LIST" }],
+    }),
+
+    getProductByCategoryId: builder.query<
+      ProductsRspData,
+      { categId: string; params: { [key: string]: string } }
+    >({
+      query: ({ categId, params }) =>
+        `/admin/mile-12-market/product/category/${categId}?${queryBuilder(params)}`,
       providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
@@ -402,6 +415,7 @@ export const {
 
   // ==== PRODUCTS START====
   useGetAllProductsQuery,
+  useGetProductByCategoryIdQuery,
   useCreateProductsMutation,
   useUpdateProductsMutation,
   useDeleteProductsMutation,

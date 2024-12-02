@@ -6,6 +6,7 @@ import LogisticsMgt from "@/Pages/LogisticsMgt/LogisticsMgt";
 import AddNewMarkets from "@/Pages/MarketsMgt/AddNewMarkets";
 import EditMarket from "@/Pages/MarketsMgt/EditMarket";
 import MarketsMgt from "@/Pages/MarketsMgt/MarketsMgt";
+import ViewCategory from "@/Pages/MarketsMgt/ViewCategory";
 import ViewMarket from "@/Pages/MarketsMgt/ViewMarket";
 import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
 import ViewOrder from "@/Pages/OrderMgt/ViewOrder";
@@ -56,6 +57,11 @@ const dashboardRoutes: Route[] = [
     path: "/markets-management/view/:id",
     name: "View Market",
     element: <ViewMarket />,
+  },
+  {
+    path: "/markets-management/category/view/:id",
+    name: "View Category",
+    element: <ViewCategory />,
   },
   {
     path: "/customers-management",
