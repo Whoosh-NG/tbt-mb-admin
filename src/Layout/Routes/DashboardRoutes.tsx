@@ -6,12 +6,14 @@ import LogisticsMgt from "@/Pages/LogisticsMgt/LogisticsMgt";
 import AddNewMarkets from "@/Pages/MarketsMgt/AddNewMarkets";
 import EditMarket from "@/Pages/MarketsMgt/EditMarket";
 import MarketsMgt from "@/Pages/MarketsMgt/MarketsMgt";
+import ViewCategory from "@/Pages/MarketsMgt/ViewCategory";
 import ViewMarket from "@/Pages/MarketsMgt/ViewMarket";
 import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
 import ViewOrder from "@/Pages/OrderMgt/ViewOrder";
 import AddNewProduct from "@/Pages/ProductMgt/AddNewProduct";
 import EditProduct from "@/Pages/ProductMgt/EditProduct";
 import ProductMgt from "@/Pages/ProductMgt/ProductMgt";
+import Settings from "@/Pages/Settings/Settings";
 import { ReactElement } from "react";
 
 interface Route {
@@ -58,6 +60,11 @@ const dashboardRoutes: Route[] = [
     element: <ViewMarket />,
   },
   {
+    path: "/markets-management/category/view/:id",
+    name: "View Category",
+    element: <ViewCategory />,
+  },
+  {
     path: "/customers-management",
     name: "Customers Management",
     element: <CustomerMgt />,
@@ -84,6 +91,11 @@ const dashboardRoutes: Route[] = [
     element: <ViewOrder />,
   },
 
+  {
+    path: "/settings",
+    name: "Settings",
+    element: <Settings />,
+  },
   {
     path: "/administrators",
     name: "Administrators",

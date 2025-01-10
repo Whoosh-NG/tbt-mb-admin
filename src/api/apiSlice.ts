@@ -1,5 +1,9 @@
 import { CategoryRspData, MarketsRsp } from "@/types/Markets";
-import { AddNewProductRsp, SingleProducts } from "@/types/Products";
+import {
+  AddNewProductRsp,
+  ProductsRspData,
+  SingleProducts,
+} from "@/types/Products";
 import { queryBuilder } from "@/Utils/helpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
@@ -33,6 +37,7 @@ export const apiSLice = createApi({
     "Markets",
     "Orders",
     "Pickup",
+    "Banners",
   ],
 
   // All endpoints
@@ -116,6 +121,15 @@ export const apiSLice = createApi({
     getProductById: builder.query<SingleProducts, string>({
       query: (productId) =>
         `/admin/mile-12-market/product/my-product/get-one/${productId}`,
+      providesTags: [{ type: "Products", id: "LIST" }],
+    }),
+
+    getProductByCategoryId: builder.query<
+      ProductsRspData,
+      { categId: string; params: { [key: string]: string } }
+    >({
+      query: ({ categId, params }) =>
+        `/admin/mile-12-market/product/category/${categId}?${queryBuilder(params)}`,
       providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
@@ -374,6 +388,47 @@ export const apiSLice = createApi({
 
       providesTags: [{ type: "Pickup", id: "LIST" }],
     }),
+
+    // === BANNERS===
+    createNewBanners: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/sliders/create`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    updateBanners: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/sliders/update`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    deleteBanner: builder.mutation({
+      query: (id) => ({
+        url: `/admin/sliders/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    getAllBanners: builder.query({
+      query: () => `/admin/sliders/list/mb`,
+
+      providesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    getBannerById: builder.query({
+      query: (id) => `/admin/sliders/show/${id}`,
+
+      providesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    // === BANNERS===
     //===== LOGISTICS ====
   }),
 });
@@ -402,6 +457,7 @@ export const {
 
   // ==== PRODUCTS START====
   useGetAllProductsQuery,
+  useGetProductByCategoryIdQuery,
   useCreateProductsMutation,
   useUpdateProductsMutation,
   useDeleteProductsMutation,
@@ -428,12 +484,20 @@ export const {
   useGetAllAgentsbyMarketIdQuery,
   // ==== MARKETS START====
 
-  // ==== ORDERA START====
+  // ==== ORDER START====
   useGetAllOrdersQuery,
   useGetOrderByStatusQuery,
   useGetOrderbyIdQuery,
   useUpdateOrderStatusMutation,
-  // ==== ORDERA END====
+  // ==== ORDER END====
+
+  // ==== BANNER START====
+  useCreateNewBannersMutation,
+  useUpdateBannersMutation,
+  useDeleteBannerMutation,
+  useGetAllBannersQuery,
+  useGetBannerByIdQuery,
+  // ==== BANNER END====
 
   useGetAllStatsQuery,
   useGetAllBrandsQuery,

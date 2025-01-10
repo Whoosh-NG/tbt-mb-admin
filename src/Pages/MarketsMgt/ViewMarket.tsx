@@ -5,6 +5,7 @@ import {
 } from "@/api/apiSlice";
 import AddNewCategory from "@/components/Main/Markets/AddNewCategory";
 import ProductGallery from "@/components/Main/Products/ProductGallery";
+import Button from "@/components/ui/Button";
 import GoBackBtn from "@/components/ui/GoBackBtn";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
@@ -94,32 +95,53 @@ const ViewMarket = () => {
       </section>
       <section className="mt-9">
         <h4>Categories</h4>
-        <ul className="mt-4 grid grid-cols-5 gap-2">
-          {data?.data?.map(
-            ({ id, name, icon, description, products_count }: CategoryRsp) => (
-              <Fragment key={id}>
-                <li className="card flex flex-col p-2">
-                  <figure className="relative h-32 overflow-hidden rounded-lg">
-                    <img
-                      src={icon}
-                      alt="TBT Marketbazzar markets categories images"
-                      className="zoomImg !h-full object-cover"
-                    />
-                  </figure>
-                  <div className="">
-                    <h4 className="mt-2 text-base font-bold">{name} </h4>
-                    <p className="text-sm">{description}</p>
-                    <p>Total Product: {products_count}</p>
-                  </div>
 
-                  <div className="container mt-5 flex flex-wrap justify-between gap-3">
-                    {/* <Button
+        {data?.data?.length === 0 ? (
+          <div className="grid h-52 place-items-center">
+            <p>No Categories found</p>
+          </div>
+        ) : (
+          <ul className="mt-4 grid grid-cols-5 gap-2">
+            {data?.data?.map(
+              ({
+                id,
+                name,
+                icon,
+                description,
+                products_count,
+              }: CategoryRsp) => (
+                <Fragment key={id}>
+                  <li className="card flex flex-col p-1">
+                    <figure className="relative h-20 overflow-hidden rounded-lg">
+                      <img
+                        src={icon}
+                        alt="TBT Marketbazzar markets categories images"
+                        className="zoomImg !h-full object-cover"
+                      />
+                    </figure>
+                    <div className="space-y-2">
+                      <h4 className="mt-2 text-xs font-bold">{name} </h4>
+                      <p className="text-xs">{description}</p>
+                      <p className="text-xs">
+                        Total Products: <b>{products_count}</b>
+                      </p>
+                    </div>
+
+                    <div className="container mt-5 flex flex-wrap justify-between gap-3">
+                      <Button
+                        link
+                        href={`/markets-management/category/view/${id}`}
+                        className="w-full !py-1"
+                      >
+                        View
+                      </Button>
+                      {/* <Button
                       onClick={() => handleShow(`new-catge-${id}`)}
                       className="w-full !py-1 md:w-5/12"
                     >
                       Edit
                     </Button> */}
-                    {/* <Button
+                      {/* <Button
                       onClick={() => handleDeletePorduct(id)}
                       type="button"
                       className="w-full !bg-negative !py-1 md:w-5/12"
@@ -127,19 +149,20 @@ const ViewMarket = () => {
                     >
                       Delete
                     </Button> */}
-                  </div>
-                </li>
-                {toggle[`new-catge-${id}`] && (
-                  <AddNewCategory
-                    id={`new-catge-${id}`}
-                    close={() => handleShow(`new-catge-${id}`)}
-                    categId={id}
-                  />
-                )}
-              </Fragment>
-            ),
-          )}
-        </ul>
+                    </div>
+                  </li>
+                  {toggle[`new-catge-${id}`] && (
+                    <AddNewCategory
+                      id={`new-catge-${id}`}
+                      close={() => handleShow(`new-catge-${id}`)}
+                      categId={id}
+                    />
+                  )}
+                </Fragment>
+              ),
+            )}
+          </ul>
+        )}
       </section>
 
       <section className="mt-9 space-y-4">
