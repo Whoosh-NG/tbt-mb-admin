@@ -1,5 +1,6 @@
 import { AiFillProduct } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
+import { IoSettingsOutline } from "react-icons/io5";
 import { MdAccountBalance, MdDashboard } from "react-icons/md";
 import { RiAdminFill, RiFileList3Fill } from "react-icons/ri";
 import { SiMarketo } from "react-icons/si";
@@ -19,7 +20,7 @@ export const SidebarData = [
     url: "/products-management",
   },
   {
-    id: "tab8",
+    id: "tab98",
     icon: <SiMarketo />,
     title: "Markets Management",
     url: "/markets-management",
@@ -51,6 +52,13 @@ export const SidebarData = [
 
   {
     id: "tab7",
+    icon: <IoSettingsOutline />,
+    title: "Settings",
+    url: "/settings",
+  },
+
+  {
+    id: "tab8",
     icon: <RiAdminFill />,
     title: "Administrators",
     url: "/administrators",

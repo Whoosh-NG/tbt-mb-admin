@@ -13,6 +13,7 @@ import ViewOrder from "@/Pages/OrderMgt/ViewOrder";
 import AddNewProduct from "@/Pages/ProductMgt/AddNewProduct";
 import EditProduct from "@/Pages/ProductMgt/EditProduct";
 import ProductMgt from "@/Pages/ProductMgt/ProductMgt";
+import Settings from "@/Pages/Settings/Settings";
 import { ReactElement } from "react";
 
 interface Route {
@@ -90,6 +91,11 @@ const dashboardRoutes: Route[] = [
     element: <ViewOrder />,
   },
 
+  {
+    path: "/settings",
+    name: "Settings",
+    element: <Settings />,
+  },
   {
     path: "/administrators",
     name: "Administrators",

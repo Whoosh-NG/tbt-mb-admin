@@ -37,6 +37,7 @@ export const apiSLice = createApi({
     "Markets",
     "Orders",
     "Pickup",
+    "Banners",
   ],
 
   // All endpoints
@@ -387,6 +388,47 @@ export const apiSLice = createApi({
 
       providesTags: [{ type: "Pickup", id: "LIST" }],
     }),
+
+    // === BANNERS===
+    createNewBanners: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/sliders/create`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    updateBanners: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/sliders/update`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    deleteBanner: builder.mutation({
+      query: (id) => ({
+        url: `/admin/sliders/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    getAllBanners: builder.query({
+      query: () => `/admin/sliders/list/mb`,
+
+      providesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    getBannerById: builder.query({
+      query: (id) => `/admin/sliders/show/${id}`,
+
+      providesTags: [{ type: "Banners", id: "LIST" }],
+    }),
+
+    // === BANNERS===
     //===== LOGISTICS ====
   }),
 });
@@ -442,12 +484,20 @@ export const {
   useGetAllAgentsbyMarketIdQuery,
   // ==== MARKETS START====
 
-  // ==== ORDERA START====
+  // ==== ORDER START====
   useGetAllOrdersQuery,
   useGetOrderByStatusQuery,
   useGetOrderbyIdQuery,
   useUpdateOrderStatusMutation,
-  // ==== ORDERA END====
+  // ==== ORDER END====
+
+  // ==== BANNER START====
+  useCreateNewBannersMutation,
+  useUpdateBannersMutation,
+  useDeleteBannerMutation,
+  useGetAllBannersQuery,
+  useGetBannerByIdQuery,
+  // ==== BANNER END====
 
   useGetAllStatsQuery,
   useGetAllBrandsQuery,
