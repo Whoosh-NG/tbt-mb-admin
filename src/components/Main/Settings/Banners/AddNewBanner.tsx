@@ -80,7 +80,7 @@ const AddNewBanner: FC<IModal & { bannerId?: number }> = ({
   };
 
   const shippingSchema = Yup.object().shape({
-    name: Yup.string().required("Please enter name"),
+    name: Yup.string().required("Please enter banner name"),
     description: Yup.string().required("Description is required"),
   });
 
