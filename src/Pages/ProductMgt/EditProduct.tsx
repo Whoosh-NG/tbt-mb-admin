@@ -15,7 +15,7 @@ import toast from "react-hot-toast";
 import Button from "@/components/ui/Button";
 import { AddNewProductData, ProductIamges } from "@/types/Products";
 import Skeleton from "react-loading-skeleton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductGallery from "@/components/Main/Products/ProductGallery";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
@@ -31,7 +31,7 @@ const EditProduct = () => {
   const { data: markets, isLoading: marketing } = useGetAllMarketsQuery({});
   const {
     data: product,
-    // isLoading: producting,
+    isLoading: producting,
     refetch,
   } = useGetProductByIdQuery(id as string, {
     refetchOnFocus: true,
@@ -88,6 +88,8 @@ const EditProduct = () => {
       payload.append("featured_image", getImages.featured_image);
     }
 
+    payload.append("product_id", id as string);
+
     try {
       const rsp = await updateProduct(payload);
       if (rsp?.error) {
@@ -109,12 +111,19 @@ const EditProduct = () => {
     location: Yup.string().required("Phone number is required"),
   });
 
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: shippingSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: shippingSchema,
+    onSubmit,
+  });
 
   const { data: categories, isLoading: categoring } =
     useGetCategoriesByMarketIdQuery(values?.market_id);
@@ -139,6 +148,31 @@ const EditProduct = () => {
       setLoading({ [imgId]: false });
     }
   };
+
+  useEffect(() => {
+    if (product?.data) {
+      Object.keys(initialValues).forEach((key) => {
+        const value =
+          product.data[
+            key as keyof Omit<
+              typeof initialValues,
+              "images" | "featured_image" | "product_id"
+            >
+          ];
+        setFieldValue(key, value);
+      });
+    }
+  }, [product?.data]);
+
+  if (producting) {
+    return (
+      <section className="container h-[50vh]">
+        <Skeleton count={6} containerClassName="!h-full" height={30} />
+      </section>
+    );
+  }
+
+  console.log(values);
 
   return (
     <main className="container my-10">
