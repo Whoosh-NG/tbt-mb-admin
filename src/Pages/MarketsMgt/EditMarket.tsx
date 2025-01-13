@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import Button from "@/components/ui/Button";
 import { ProductIamges } from "@/types/Products";
 import Skeleton from "react-loading-skeleton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductGallery from "@/components/Main/Products/ProductGallery";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
@@ -43,8 +43,8 @@ const EditMarket = () => {
   const initialValues = {
     market_id: id,
     name: (market?.data?.name as string) ?? "",
-    banner: (market?.data?.banner as string) ?? "",
     address: (market?.data?.address as string) ?? "",
+    banner: "",
     agent_id: (market?.data?.agent_id as string) ?? "",
     description: (market?.data?.description as string) ?? "",
   };
@@ -102,6 +102,8 @@ const EditMarket = () => {
       payload.append("longitude", coordinates?.lng.toString());
     }
 
+    payload.append("market_id", id as string);
+
     try {
       const rsp = await newMarket(payload);
       if (rsp?.error) {
@@ -122,12 +124,28 @@ const EditMarket = () => {
     name: Yup.string().required("Please enter name"),
   });
 
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: shippingSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: shippingSchema,
+    onSubmit,
+  });
+
+  useEffect(() => {
+    if (market?.data) {
+      Object.keys(initialValues).forEach((key) => {
+        const values = market?.data[key as keyof typeof initialValues];
+        setFieldValue(key, values);
+      });
+    }
+  }, [market?.data]);
 
   if (!mapLoaded) {
     return (
