@@ -27,7 +27,7 @@ const initialValues = {
   quantity: "",
   other_info: "",
   weight: "",
-  market_type: "",
+  market_type: "mile12market",
   market_id: "",
   brand_id: "",
   is_top_deal: "",
@@ -138,7 +138,7 @@ const AddNewProduct = () => {
             error={touched.sale_price && errors.sale_price}
             className="inputWrapper"
           />
-          <FormInput
+          {/* <FormInput
             id="tbt_price"
             name="tbt_price"
             type="tel"
@@ -148,7 +148,7 @@ const AddNewProduct = () => {
             onChange={handleChange}
             error={touched.tbt_price && errors.tbt_price}
             className="inputWrapper"
-          />
+          /> */}
           <FormInput
             id="location"
             name="location"
@@ -204,7 +204,7 @@ const AddNewProduct = () => {
             error={touched.quantity && errors.quantity}
             className="w-full md:w-[23%]"
           />
-          <FormInput
+          {/* <FormInput
             id="market_type"
             name="market_type"
             type="select"
@@ -215,7 +215,7 @@ const AddNewProduct = () => {
             onChange={handleChange}
             error={touched.market_type && errors.market_type}
             className="w-full md:w-[23%]"
-          />
+          /> */}
 
           {marketing ? (
             <Skeleton height={50} containerClassName="flex-1" />
@@ -244,6 +244,7 @@ const AddNewProduct = () => {
               id="category_id"
               name="category_id"
               type="select"
+              label="Category"
               placeholder="Select category"
               selectOptions={categories?.data}
               valuePropertyName="id"
@@ -253,7 +254,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.category_id && errors.category_id}
-              className="w-full md:w-[23%]"
+              className="w-full md:w-[32%]"
             />
           )}
 
@@ -264,6 +265,7 @@ const AddNewProduct = () => {
               id="brand_id"
               name="brand_id"
               type="select"
+              label="Brand"
               placeholder="Select brand"
               selectOptions={brands?.data}
               valuePropertyName="id"
@@ -273,7 +275,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.brand_id && errors.brand_id}
-              className="w-full md:w-[23%]"
+              className="w-full md:w-[32%]"
             />
           )}
           <FormInput
@@ -295,7 +297,7 @@ const AddNewProduct = () => {
                 }));
               }
             }}
-            className="w-full md:w-[23%]"
+            className="w-full md:w-[32%]"
             multiple
             accept="image/*"
           />
@@ -317,7 +319,7 @@ const AddNewProduct = () => {
                 }));
               }
             }}
-            className="w-full md:w-[23%]"
+            className="w-full md:w-[32%]"
             accept="image/*"
           />
           <FormInput
@@ -340,7 +342,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.is_top_deal && errors.is_top_deal}
-            className="w-full md:w-[23%]"
+            className="w-full md:w-[32%]"
             accept="image/*"
           />
           <FormInput
