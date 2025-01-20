@@ -6,6 +6,8 @@ import dashboardRoutes from "./Layout/Routes/DashboardRoutes";
 import DashboardLayout from "./Layout/DashboardLayout";
 import NotFound from "./Pages/404/NotFound";
 import AOS from "aos";
+import useIdleTimeout from "./Hooks/useIdleTimeout";
+import { useAuthHook } from "./Hooks/authHook";
 
 const App = () => {
   // AOS animation
@@ -13,7 +15,8 @@ const App = () => {
     AOS.init();
   }, [AOS]);
 
-  // useIdleTimeout(logoutUser, 300000);
+  const { logoutUser } = useAuthHook();
+  useIdleTimeout(logoutUser, 300000);
 
   return (
     <main className="App">

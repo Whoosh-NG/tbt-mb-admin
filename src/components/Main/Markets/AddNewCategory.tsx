@@ -31,7 +31,7 @@ const AddNewCategory: FC<IModal & { categId?: number }> = ({
   const initialValues = {
     name: (data?.data?.name as string) ?? "",
     description: (data?.data?.description as string) ?? "",
-    market_id: (data?.data?.app_type as string) ?? "",
+    market_id: (data?.data?.market_id as string) ?? "",
   };
 
   const onSubmit = async (formData: any) => {
@@ -93,6 +93,7 @@ const AddNewCategory: FC<IModal & { categId?: number }> = ({
     if (data?.data) {
       setFieldValue("name", data?.data?.name);
       setFieldValue("description", data?.data?.description);
+      setFieldValue("market_id", data?.data?.market_id);
       setFieldValue("app_type", data?.data?.app_type);
     }
   }, [data?.data]);
