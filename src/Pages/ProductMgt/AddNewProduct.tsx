@@ -138,7 +138,7 @@ const AddNewProduct = () => {
             error={touched.sale_price && errors.sale_price}
             className="inputWrapper"
           />
-          {/* <FormInput
+          <FormInput
             id="tbt_price"
             name="tbt_price"
             type="tel"
@@ -148,7 +148,7 @@ const AddNewProduct = () => {
             onChange={handleChange}
             error={touched.tbt_price && errors.tbt_price}
             className="inputWrapper"
-          /> */}
+          />
           <FormInput
             id="location"
             name="location"
@@ -224,6 +224,7 @@ const AddNewProduct = () => {
               id="market_id"
               name="market_id"
               type="select"
+              label="Market"
               placeholder="Select market"
               selectOptions={markets?.data}
               valuePropertyName="id"
@@ -254,7 +255,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.category_id && errors.category_id}
-              className="w-full md:w-[32%]"
+              className="w-full md:w-[23%]"
             />
           )}
 
@@ -275,7 +276,7 @@ const AddNewProduct = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               error={touched.brand_id && errors.brand_id}
-              className="w-full md:w-[32%]"
+              className="w-full md:w-[23%]"
             />
           )}
           <FormInput
@@ -297,7 +298,7 @@ const AddNewProduct = () => {
                 }));
               }
             }}
-            className="w-full md:w-[32%]"
+            className="w-full md:w-[23%]"
             multiple
             accept="image/*"
           />
@@ -319,7 +320,7 @@ const AddNewProduct = () => {
                 }));
               }
             }}
-            className="w-full md:w-[32%]"
+            className="w-full md:w-[23%]"
             accept="image/*"
           />
           <FormInput
@@ -342,7 +343,7 @@ const AddNewProduct = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={touched.is_top_deal && errors.is_top_deal}
-            className="w-full md:w-[32%]"
+            className="w-full md:w-[23%]"
             accept="image/*"
           />
           <FormInput

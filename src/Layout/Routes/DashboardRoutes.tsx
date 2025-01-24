@@ -12,6 +12,7 @@ import OrderMgt from "@/Pages/OrderMgt/OrderMgt";
 import ViewOrder from "@/Pages/OrderMgt/ViewOrder";
 import AddNewProduct from "@/Pages/ProductMgt/AddNewProduct";
 import EditProduct from "@/Pages/ProductMgt/EditProduct";
+import ProductDeets from "@/Pages/ProductMgt/ProductDeets";
 import ProductMgt from "@/Pages/ProductMgt/ProductMgt";
 import Settings from "@/Pages/Settings/Settings";
 import { ReactElement } from "react";
@@ -38,6 +39,11 @@ const dashboardRoutes: Route[] = [
     path: "/edit-product/:id",
     name: "Edit Product",
     element: <EditProduct />,
+  },
+  {
+    path: "/product-deets/:id",
+    name: "Product Details",
+    element: <ProductDeets />,
   },
   {
     path: "/markets-management",

@@ -522,6 +522,36 @@ button:disabled {
   color: var(--Grey6);
 }
 
+.activeProductTab,
+.notActiveProductTab {
+  padding: 0.5em 0.8em;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.activeProductTab h4,
+.notActiveProductTab h4 {
+  font-size: 1.3rem !important;
+}
+
+.activeProductTab {
+  border-bottom: solid 2px var(--pryColor);
+}
+
+.activeProductTab h4 {
+  color: var(--pryColor);
+  font-weight: 700;
+}
+
+.notActiveProductTab {
+  border-bottom: solid 2px var(--Grey5);
+}
+
+.notActiveProductTab h4 {
+  color: var(--Grey5);
+  font-weight: 700;
+}
+
 .activeTab,
 .notActiveTab {
   padding: 0.7em 1.3em;

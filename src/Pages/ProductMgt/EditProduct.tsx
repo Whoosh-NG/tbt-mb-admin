@@ -17,7 +17,7 @@ import { AddNewProductData, ProductIamges } from "@/types/Products";
 import Skeleton from "react-loading-skeleton";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ProductGallery from "@/components/Main/Products/ProductGallery";
+import ProductGallery from "@/components/Main/Products/ProductDeets/ProductGallery";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
 
 const EditProduct = () => {
