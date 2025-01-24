@@ -4,7 +4,7 @@ import {
   useGetMarketByIdQuery,
 } from "@/api/apiSlice";
 import AddNewCategory from "@/components/Main/Markets/AddNewCategory";
-import ProductGallery from "@/components/Main/Products/ProductGallery";
+import ProductGallery from "@/components/Main/Products/ProductDeets/ProductGallery";
 import Button from "@/components/ui/Button";
 import GoBackBtn from "@/components/ui/GoBackBtn";
 import { useGlobalHooks } from "@/Hooks/globalHooks";

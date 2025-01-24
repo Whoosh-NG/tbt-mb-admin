@@ -42,7 +42,7 @@ const ProductCard = ({
           <p className="outstock-btn">Out of Stock</p>
         </div>
       )}
-      <Link to={`/product-deets$/${productData?.id}`}>
+      <Link to={`/product-deets/${productData?.id}`}>
         <figure className="zoomImg relative h-20 overflow-hidden rounded-lg lg:h-40">
           <img
             src={
@@ -57,7 +57,7 @@ const ProductCard = ({
         <div className="p-2">
           <hgroup className="flex flex-col justify-between">
             <h4 className="text-xs font-extrabold text-pryColor lg:text-sm">
-              {productData?.name} {productData?.weight}{" "}
+              {productData?.name} {parseFloat(productData?.weight as string)}kg{" "}
             </h4>
             <h4 className="mt-2 text-base font-bold">
               ₦{formatNumInThousands(productData?.tbt_price as number)}{" "}
