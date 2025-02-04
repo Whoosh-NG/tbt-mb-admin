@@ -44,7 +44,6 @@ const EditMarket = () => {
     market_id: id,
     name: (market?.data?.name as string) ?? "",
     address: (market?.data?.address as string) ?? "",
-    banner: "",
     agent_id: (market?.data?.agent_id as string) ?? "",
     description: (market?.data?.description as string) ?? "",
   };
@@ -53,10 +52,14 @@ const EditMarket = () => {
     [key: string]: { [key: string]: string };
   }>({});
 
+  console.log(getData);
+
   const [coordinates, setCoordinates] = useState<google.maps.LatLngLiteral>({
     lat: 0,
     lng: 0,
   });
+
+  console.log(coordinates);
 
   const [newMarket, { isLoading }] = useUpdateMarketsMutation();
 
@@ -88,15 +91,12 @@ const EditMarket = () => {
       payload.append("banner", getImages.banner);
     }
 
-    // If user doesn't change the address, the current address and coordinates should be append
+    // Append address and coordinates
     if (Object.keys(getData).length === 0) {
-      payload.append("address", values?.address as string);
+      payload.append("address", market?.data?.address);
       payload.append("latitude", market?.data?.latitude);
       payload.append("longitude", market?.data?.longitude);
-    }
-
-    // Append address and coordinates
-    if (Object.keys(getData).length > 0 && coordinates) {
+    } else {
       payload.append("address", getData?.useraddress?.formatted_address);
       payload.append("latitude", coordinates?.lat.toString());
       payload.append("longitude", coordinates?.lng.toString());
@@ -146,6 +146,12 @@ const EditMarket = () => {
       });
     }
   }, [market?.data]);
+
+  useEffect(() => {
+    if (getData?.useraddress?.formatted_address) {
+      setFieldValue("address", getData.useraddress.formatted_address);
+    }
+  }, [getData, setFieldValue]);
 
   if (!mapLoaded) {
     return (
