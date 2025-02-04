@@ -208,7 +208,7 @@ export type AddNewMarketData = {
   address?: string;
   latitude?: string;
   longitude?: string;
-  banner: string;
+  banner?: string;
   agent_id: string;
   description: string;
 };
