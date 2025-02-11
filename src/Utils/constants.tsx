@@ -7,6 +7,18 @@ import BrandAction from "@/components/Main/Markets/BrandAction";
 import AgentAction from "@/components/Main/Markets/Agents/AgentAction";
 import Button from "@/components/ui/Button";
 import LogisticsAction from "@/components/Main/Logistics/LogisticsAction";
+import CouponAction from "@/components/Main/Settings/Coupons/CouponAction";
+import ServiceAction from "@/components/Main/Settings/ServiceCharge/ServiceAction";
+
+export const tableCustomStyles = {
+  headCells: {
+    style: {
+      color: "var(--pryColor)",
+      fontWeight: 600,
+      backgroundColor: "#F6F6F7",
+    },
+  },
+};
 
 export const userColData: IColData[] = [
   {
@@ -257,6 +269,92 @@ export const logisticsColData = (): IColData[] => {
     {
       name: "Action",
       cell: (row) => <LogisticsAction id={row?.id} />,
+      grow: 1.5,
+    },
+  ];
+};
+
+export const couponColData = (): IColData[] => {
+  return [
+    {
+      name: "Code",
+      selector: ({ code }) => code,
+      width: "100px",
+    },
+    {
+      name: "Name",
+      selector: ({ name }) => name,
+    },
+
+    {
+      name: "Value",
+      selector: ({ value }) => `₦${formatNumInThousands(value)}`,
+    },
+    {
+      name: "Date Crerated",
+      selector: ({ created_at }) => readableDateTime(created_at, true),
+      grow: 1.5,
+    },
+    {
+      name: "Status",
+      grow: 1.5,
+
+      cell: ({ status }) => (
+        <p
+          className={`capitalize ${
+            status === "active" ? "!text-positive" : "text-negative"
+          }`}
+        >
+          {status}
+        </p>
+      ),
+    },
+    {
+      name: "Action",
+      cell: (row) => <CouponAction data={row} />,
+      grow: 1.5,
+    },
+  ];
+};
+
+export const serviceColData = (): IColData[] => {
+  return [
+    {
+      name: "ID",
+      selector: ({ id }) => id,
+      width: "100px",
+    },
+    {
+      name: "Label",
+      selector: ({ description }) => description,
+    },
+
+    {
+      name: "Value",
+      selector: ({ value }) => `₦${formatNumInThousands(value)}`,
+    },
+    // {
+    //   name: "Date Crerated",
+    //   selector: ({ created_at }) => readableDateTime(created_at, true),
+    //   grow: 1.5,
+    // },
+    {
+      name: "Status",
+      grow: 1.5,
+
+      cell: ({ status }) => (
+        <p
+          className={`capitalize ${
+            status === "active" ? "!text-positive" : "text-negative"
+          }`}
+        >
+          {status}
+        </p>
+      ),
+    },
+    {
+      name: "Action",
+      cell: (row) => <ServiceAction data={row} />,
       grow: 1.5,
     },
   ];

@@ -2,6 +2,7 @@ import GoBackBtn from "@/components/ui/GoBackBtn";
 import { IServerError } from "@/types/GlobalInterfaces";
 
 import {
+  useConfirmOrderPaymentMutation,
   useGetOrderbyIdQuery,
   useUpdateOrderStatusMutation,
 } from "@/api/apiSlice";
@@ -19,6 +20,7 @@ import PopUp from "@/components/popUps/PopUp";
 import { selectGlobal } from "@/Redux/Features/globalSlice";
 import { useAppSelector } from "@/Redux/reduxHooks";
 import { FormEvent, useState } from "react";
+import ActionModal from "@/components/ActionModal/ActionModal";
 
 const ViewOrder = () => {
   const { handleShow } = useGlobalHooks();
@@ -35,6 +37,9 @@ const ViewOrder = () => {
   const [updateStatus, { isLoading: updating }] =
     useUpdateOrderStatusMutation();
 
+  const [confirmPay, { isLoading: confirming }] =
+    useConfirmOrderPaymentMutation();
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -50,6 +55,25 @@ const ViewOrder = () => {
         toast.success(rsp?.data?.message);
         refetch();
         handleShow("change-status");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleConfirmPayment = async () => {
+    try {
+      const rsp = await confirmPay({ order_id: id });
+
+      if (rsp?.error) {
+        toast.error(
+          (rsp?.error as IServerError).data.message ||
+            "Unable to confirm payment",
+        );
+      } else {
+        toast.success(rsp?.data?.message);
+        refetch();
+        handleShow("confirm-pay");
       }
     } catch (error) {
       console.log(error);
@@ -92,7 +116,13 @@ const ViewOrder = () => {
             <h4>Ordered Information</h4>
 
             <div>
-              <button className="main-btn">Confirm Payment</button>
+              <Button
+                className="main-btn"
+                type="button"
+                onClick={() => handleShow("confirm-pay")}
+              >
+                Confirm Payment
+              </Button>
             </div>
           </div>
 
@@ -290,6 +320,20 @@ const ViewOrder = () => {
             </form>
           </section>
         </PopUp>
+      )}
+
+      {toggle["confirm-pay"] && (
+        <ActionModal
+          id={"confirm-pay"}
+          close={() => handleShow("confirm-pay")}
+          title="Confirm Payment?"
+          subTitle=" Are you sure? This cannot be reversed."
+          actionTitle="Yes, Confirm"
+          btnMainClass="main-btn "
+          btnSecClass="outline-btn"
+          loading={confirming}
+          action={handleConfirmPayment}
+        />
       )}
     </main>
   );
