@@ -39,6 +39,8 @@ export const apiSLice = createApi({
     "Orders",
     "Pickup",
     "Banners",
+    "ServiceCharge",
+    "Coupon",
   ],
 
   // All endpoints
@@ -342,13 +344,24 @@ export const apiSLice = createApi({
       invalidatesTags: [{ type: "Orders", id: "LIST" }],
     }),
 
+    confirmOrderPayment: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/order/confirm-payment`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Orders", id: "LIST" }],
+    }),
+
     getPayments: builder.query({
       query: (params) =>
         `/admin/mile-12-market/payment/list?${queryBuilder(params)}`,
     }),
+
     getPaymentById: builder.query({
       query: (id) => `/admin/payment/show/${id}`,
     }),
+
     //===== ORDERS ====
 
     //===== LOGISTICS ====
@@ -430,11 +443,101 @@ export const apiSLice = createApi({
     }),
 
     // === BANNERS===
-    //===== LOGISTICS ====
+
+    // === SERVICE CHARGE===
+    createServiceCharge: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/general-setting/add-option`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    updateServiceCharge: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/general-setting/update-option`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    getServiceCharge: builder.query({
+      query: () => `/admin/general-setting/list`,
+      providesTags: [{ type: "ServiceCharge", id: "LIST" }],
+    }),
+
+    getServiceChargeById: builder.query({
+      query: (id) => `/admin/general-setting/option/${id}`,
+      providesTags: [{ type: "ServiceCharge", id: "LIST" }],
+    }),
+    // === SERVICE CHARGE===
+
+    // == COUPON ==
+
+    createCoupon: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/coupon-code/add-code`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    updateCoupon: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/coupon-code/update-code`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    updateCouponStatus: builder.mutation({
+      query: (id) => ({
+        url: `/admin/coupon-code/update-status/${id}`,
+        method: "POST",
+      }),
+      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    getAllCoupons: builder.query({
+      query: () => `/admin/coupon-code/list`,
+
+      providesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    getCouponById: builder.query({
+      query: (id) => `/admin/coupon-code/show/${id}`,
+
+      providesTags: [{ type: "Coupon", id: "LIST" }],
+    }),
+
+    todaysDeal: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/product/mark-productastodaydeal`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
+    }),
+    // === COUPON ===
   }),
 });
 
 export const {
+  useTodaysDealMutation,
+  useCreateServiceChargeMutation,
+  useGetServiceChargeByIdQuery,
+  useUpdateCouponStatusMutation,
+  useUpdateServiceChargeMutation,
+  useCreateCouponMutation,
+  useUpdateCouponMutation,
+  useGetAllCouponsQuery,
+  useGetCouponByIdQuery,
+
+  useGetServiceChargeQuery,
   useCreatePickupChargeMutation,
   useUpdatePickupChargeMutation,
   useDeletePickupChargeMutation,
@@ -486,6 +589,7 @@ export const {
   // ==== MARKETS START====
 
   // ==== ORDER START====
+  useConfirmOrderPaymentMutation,
   useGetAllOrdersQuery,
   useGetOrderByStatusQuery,
   useGetOrderbyIdQuery,

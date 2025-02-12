@@ -32,7 +32,7 @@ const AllCustomers = () => {
   };
 
   const handleRowClicked = (row: { [keys: string]: string | number }) => {
-    naviagte(`/consignment/${row?.id}`);
+    naviagte(`/customers-management/view/${row?.id}`);
   };
 
   useEffect(() => {

@@ -1,4 +1,6 @@
 import Banners from "@/components/Main/Settings/Banners/Banners";
+import Coupons from "@/components/Main/Settings/Coupons/Coupons";
+import ServiceCharge from "@/components/Main/Settings/ServiceCharge/ServiceCharge";
 import RoutingTabTitle from "@/components/ui/Tabs/RoutingTabTitle";
 import TabContents from "@/components/ui/Tabs/TabContents";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
@@ -8,12 +10,24 @@ import { Fragment } from "react/jsx-runtime";
 export const marketsTabs = {
   TabTitle: [
     {
-      id: "tab1",
+      id: "banners",
       title: "Banners",
+    },
+    {
+      id: "service-charge",
+      title: "Service Charge",
+    },
+    {
+      id: "coupon",
+      title: "Coupon",
     },
   ],
 
-  TabContents: [{ id: "tab1", comp: <Banners /> }],
+  TabContents: [
+    { id: "banners", comp: <Banners /> },
+    { id: "service-charge", comp: <ServiceCharge /> },
+    { id: "coupon", comp: <Coupons /> },
+  ],
 };
 
 const Settings = () => {
@@ -21,7 +35,7 @@ const Settings = () => {
 
   const [query] = useSearchParams();
 
-  const activeTab = query.get("tab") || "tab1";
+  const activeTab = query.get("tab") || "banners";
 
   return (
     <main className="container py-10">

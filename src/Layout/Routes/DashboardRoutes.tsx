@@ -1,6 +1,7 @@
 import AccountMgt from "@/Pages/AccountMgt/AccountMgt";
 import Administrators from "@/Pages/Administrators/Administrators";
 import CustomerMgt from "@/Pages/CustomerMgt/CustomerMgt";
+import ViewCustomer from "@/Pages/CustomerMgt/ViewCustomer";
 import Home from "@/Pages/Home/Home";
 import LogisticsMgt from "@/Pages/LogisticsMgt/LogisticsMgt";
 import AddNewMarkets from "@/Pages/MarketsMgt/AddNewMarkets";
@@ -74,6 +75,11 @@ const dashboardRoutes: Route[] = [
     path: "/customers-management",
     name: "Customers Management",
     element: <CustomerMgt />,
+  },
+  {
+    path: "/customers-management/view/:id",
+    name: "Customers Management",
+    element: <ViewCustomer />,
   },
   {
     path: "/accounts-management",

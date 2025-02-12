@@ -4,7 +4,7 @@ import { useGlobalHooks } from "@/Hooks/globalHooks";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
 import { selectGlobal } from "@/Redux/Features/globalSlice";
 import { useAppSelector } from "@/Redux/reduxHooks";
-import { logisticsColData } from "@/Utils/constants";
+import { logisticsColData, tableCustomStyles } from "@/Utils/constants";
 import DataTable from "react-data-table-component";
 import { FaPlus } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
@@ -15,16 +15,6 @@ const LogisticsMgt = () => {
   const { data, isLoading } = useGetAllPickupChargeQuery({});
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
-
-  const tableCustomStyles = {
-    headCells: {
-      style: {
-        color: "var(--pryColor)",
-        fontWeight: 600,
-        backgroundColor: "#F6F6F7",
-      },
-    },
-  };
 
   if (isLoading) {
     return (
