@@ -1,10 +1,13 @@
 import { useGetAllProductsQuery } from "@/api/apiSlice";
+import MakeTodaysDeal from "@/components/Main/Products/MakeTodaysDeal";
 import ProductCard from "@/components/Main/Products/ProductCard";
 import ServerPaginate from "@/components/ServerPaginate";
 import { useGlobalHooks } from "@/Hooks/globalHooks";
 import useUpdatePageName from "@/Hooks/useUpdatePageName";
+import { selectGlobal } from "@/Redux/Features/globalSlice";
+import { useAppSelector } from "@/Redux/reduxHooks";
 import { reftechData } from "@/Utils/helpers";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
@@ -12,7 +15,8 @@ import { Link } from "react-router-dom";
 const ProductMgt = () => {
   useUpdatePageName("Product Managements");
 
-  const { handleSearch, setLoading, loading } = useGlobalHooks();
+  const toggle = useAppSelector(selectGlobal);
+  const { handleSearch, setLoading, handleShow, loading } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
 
   const [queryData, setQueryData] = useState<{
@@ -61,11 +65,21 @@ const ProductMgt = () => {
             ))}
           </ul>
         ) : (
-          <ul className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-5 lg:gap-3">
+          <ul className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:gap-3">
             {filteredData?.map((item) => (
-              <li key={item?.id} data-aos="fade-in">
-                <ProductCard productData={item} />
-              </li>
+              <Fragment key={item?.id}>
+                <li data-aos="fade-in">
+                  <ProductCard productData={item} />
+                </li>
+
+                {toggle[`todays-deal-${item?.id}`] && (
+                  <MakeTodaysDeal
+                    id={`todays-deal-${item?.id}`}
+                    close={() => handleShow(`todays-deal-${item?.id}`)}
+                    productId={Number(item?.id)}
+                  />
+                )}
+              </Fragment>
             ))}
           </ul>
         )}

@@ -3,29 +3,36 @@ import { useGlobalHooks } from "@/Hooks/globalHooks";
 import { useAppSelector } from "@/Redux/reduxHooks";
 import { selectGlobal } from "@/Redux/Features/globalSlice";
 import ManageCoupons from "./ManageCoupons";
+import { useUpdateCouponStatusMutation } from "@/api/apiSlice";
+import toast from "react-hot-toast";
+import { IServerError } from "@/types/GlobalInterfaces";
+import ActionModal from "@/components/ActionModal/ActionModal";
 
 const CouponAction = ({ data }: { data: { id: number; status: string } }) => {
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
 
-  // const handleConfirmPayment = async () => {
-  //   try {
-  //     const rsp = await confirmPay({ order_id: id });
+  const [changeStatus, { isLoading }] = useUpdateCouponStatusMutation();
 
-  //     if (rsp?.error) {
-  //       toast.error(
-  //         (rsp?.error as IServerError).data.message ||
-  //           "Unable to confirm payment",
-  //       );
-  //     } else {
-  //       toast.success(rsp?.data?.message);
-  //       refetch();
-  //       handleShow("confirm-pay");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleChangeStatus = async () => {
+    try {
+      const rsp = await changeStatus(data?.id);
+
+      if (rsp?.error) {
+        toast.error(
+          (rsp?.error as IServerError).data.message ||
+            "Unable to update status",
+        );
+      } else {
+        toast.success(rsp?.data?.message);
+        handleShow(`change-status-${data?.id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const isActive = data?.status === "active";
 
   return (
     <>
@@ -38,7 +45,7 @@ const CouponAction = ({ data }: { data: { id: number; status: string } }) => {
           Edit
         </Button>
         <Button
-          onClick={() => handleShow(`update-coupon-${data?.id}`)}
+          onClick={() => handleShow(`change-status-${data?.id}`)}
           type="button"
           className={`${data?.status === "active" ? "negative-btn !bg-transparent" : ""} !py-1`}
         >
@@ -54,19 +61,23 @@ const CouponAction = ({ data }: { data: { id: number; status: string } }) => {
         />
       )}
 
-      {/* {toggle["confirm-pay"] && (
+      {toggle[`change-status-${data?.id}`] && (
         <ActionModal
-          id={"confirm-pay"}
-          close={() => handleShow("confirm-pay")}
-          title="Confirm Payment?"
-          subTitle=" Are you sure? This cannot be reversed."
-          actionTitle="Yes, Confirm"
-          btnMainClass="main-btn "
+          id={`change-status-${data?.id}`}
+          close={() => handleShow(`change-status-${data?.id}`)}
+          title={isActive ? "Disable Coupon" : "Enable Coupon"}
+          subTitle={
+            isActive
+              ? "Are you sure you want to disable coupon?"
+              : "Are you sure you want to enable coupon?"
+          }
+          actionTitle={isActive ? "Yes, Disable" : "Yes Enable"}
+          btnMainClass={isActive ? "negative-btn" : "main-btn"}
           btnSecClass="outline-btn"
-          loading={confirming}
-          action={handleConfirmPayment}
+          loading={isLoading}
+          action={handleChangeStatus}
         />
-      )} */}
+      )}
     </>
   );
 };

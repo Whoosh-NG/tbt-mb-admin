@@ -21,6 +21,7 @@ import { selectGlobal } from "@/Redux/Features/globalSlice";
 import { useAppSelector } from "@/Redux/reduxHooks";
 import { FormEvent, useState } from "react";
 import ActionModal from "@/components/ActionModal/ActionModal";
+import { FaCheckCircle } from "react-icons/fa";
 
 const ViewOrder = () => {
   const { handleShow } = useGlobalHooks();
@@ -116,13 +117,19 @@ const ViewOrder = () => {
             <h4>Ordered Information</h4>
 
             <div>
-              <Button
-                className="main-btn"
-                type="button"
-                onClick={() => handleShow("confirm-pay")}
-              >
-                Confirm Payment
-              </Button>
+              {data?.data?.payment_status === "paid" ? (
+                <p className="outline-btn flex items-center justify-center gap-2 !bg-transparent">
+                  <FaCheckCircle /> Payment Confirmed
+                </p>
+              ) : (
+                <Button
+                  className="main-btn"
+                  type="button"
+                  onClick={() => handleShow("confirm-pay")}
+                >
+                  Confirm Payment
+                </Button>
+              )}
             </div>
           </div>
 

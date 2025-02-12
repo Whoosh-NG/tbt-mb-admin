@@ -44,6 +44,8 @@ export type Product = {
   id?: number | undefined;
   name?: string | undefined;
   slug?: string | undefined;
+  deal_end_date: string | undefined;
+  deal_start_date: string | undefined;
   sale_price?: number | undefined;
   tbt_price?: number | undefined;
   market_id?: number | undefined;

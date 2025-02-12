@@ -474,7 +474,7 @@ export const apiSLice = createApi({
     }),
     // === SERVICE CHARGE===
 
-    // === SERVICE CHARGE===
+    // == COUPON ==
 
     createCoupon: builder.mutation({
       query: (formData) => ({
@@ -495,10 +495,9 @@ export const apiSLice = createApi({
     }),
 
     updateCouponStatus: builder.mutation({
-      query: (formData) => ({
-        url: `/admin/coupon-code/update-code`,
+      query: (id) => ({
+        url: `/admin/coupon-code/update-status/${id}`,
         method: "POST",
-        body: formData,
       }),
       invalidatesTags: [{ type: "Coupon", id: "LIST" }],
     }),
@@ -514,11 +513,21 @@ export const apiSLice = createApi({
 
       providesTags: [{ type: "Coupon", id: "LIST" }],
     }),
-    // === SERVICE CHARGE===
+
+    todaysDeal: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/mile-12-market/product/mark-productastodaydeal`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
+    }),
+    // === COUPON ===
   }),
 });
 
 export const {
+  useTodaysDealMutation,
   useCreateServiceChargeMutation,
   useGetServiceChargeByIdQuery,
   useUpdateCouponStatusMutation,
