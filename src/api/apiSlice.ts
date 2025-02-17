@@ -451,7 +451,7 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
-      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+      invalidatesTags: [{ type: "ServiceCharge", id: "LIST" }],
     }),
 
     updateServiceCharge: builder.mutation({
@@ -460,7 +460,7 @@ export const apiSLice = createApi({
         method: "POST",
         body: formData,
       }),
-      invalidatesTags: [{ type: "Coupon", id: "LIST" }],
+      invalidatesTags: [{ type: "ServiceCharge", id: "LIST" }],
     }),
 
     getServiceCharge: builder.query({

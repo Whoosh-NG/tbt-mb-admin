@@ -1,6 +1,6 @@
 import {
   useCreateServiceChargeMutation,
-  useGetBannerByIdQuery,
+  useGetServiceChargeByIdQuery,
   useUpdateServiceChargeMutation,
 } from "@/api/apiSlice";
 import PopUp from "@/components/popUps/PopUp";
@@ -22,7 +22,7 @@ interface IBannerData {
   app_type: string;
 }
 
-const ManageServiceCharge: FC<IModal & { serviceId?: number }> = ({
+const ManageServiceCharge: FC<IModal & { serviceId?: string }> = ({
   id,
   close,
   serviceId,
@@ -31,7 +31,7 @@ const ManageServiceCharge: FC<IModal & { serviceId?: number }> = ({
   const [updateCharge, { isLoading: updating }] =
     useUpdateServiceChargeMutation();
 
-  const { data, isLoading: getting } = useGetBannerByIdQuery(serviceId);
+  const { data, isLoading: getting } = useGetServiceChargeByIdQuery(serviceId);
 
   const initialValues = {
     option: (data?.data?.option as string) ?? "",
@@ -53,7 +53,7 @@ const ManageServiceCharge: FC<IModal & { serviceId?: number }> = ({
     });
 
     if (serviceId) {
-      payload.append("coupon_code_id", serviceId.toString());
+      payload.append("general_setting_id", data?.data?.id);
       payload.append("status", data?.data?.status);
     }
 
