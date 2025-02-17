@@ -288,7 +288,7 @@ export const couponColData = (): IColData[] => {
 
     {
       name: "Value",
-      selector: ({ value }) => `₦${formatNumInThousands(value)}`,
+      selector: ({ value }) => `${value}%`,
     },
     {
       name: "Date Crerated",
@@ -331,7 +331,7 @@ export const serviceColData = (): IColData[] => {
 
     {
       name: "Value",
-      selector: ({ value }) => `₦${formatNumInThousands(value)}`,
+      selector: ({ value }) => `${value}%`,
     },
     // {
     //   name: "Date Crerated",

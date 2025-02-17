@@ -4,7 +4,11 @@ import { useAppSelector } from "@/Redux/reduxHooks";
 import { selectGlobal } from "@/Redux/Features/globalSlice";
 import ManageServiceCharge from "./ManageServiceCharge";
 
-const ServiceAction = ({ data }: { data: { id: number; status: string } }) => {
+const ServiceAction = ({
+  data,
+}: {
+  data: { id: number; option: string; status: string };
+}) => {
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
 
@@ -50,7 +54,7 @@ const ServiceAction = ({ data }: { data: { id: number; status: string } }) => {
         <ManageServiceCharge
           id={`update-charge-${data?.id}`}
           close={() => handleShow(`update-charge-${data?.id}`)}
-          serviceId={data?.id}
+          serviceId={data?.option}
         />
       )}
 
