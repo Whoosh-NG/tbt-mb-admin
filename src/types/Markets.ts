@@ -3,6 +3,7 @@ import { Product, ProductIamges, ProductMarket } from "./Products";
 export type MarketsRsp = {
   id: number;
   name: string;
+  status: string;
   description: string | null;
   banner: string;
   address: string;

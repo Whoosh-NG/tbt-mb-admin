@@ -10,6 +10,9 @@ import LogisticsAction from "@/components/Main/Logistics/LogisticsAction";
 import CouponAction from "@/components/Main/Settings/Coupons/CouponAction";
 import ServiceAction from "@/components/Main/Settings/ServiceCharge/ServiceAction";
 
+// export const baseUrl= "https://api.tbt.live.whooshing.xyz/api/v1"
+export const baseUrl = "https://tbt-agro.whooshing.xyz/api/v1";
+
 export const tableCustomStyles = {
   headCells: {
     style: {

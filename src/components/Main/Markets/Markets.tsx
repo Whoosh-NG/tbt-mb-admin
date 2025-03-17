@@ -1,10 +1,37 @@
-import { useGetAllMarketsQuery } from "@/api/apiSlice";
+import {
+  useGetAllMarketsQuery,
+  useToggleMarketStatusMutation,
+} from "@/api/apiSlice";
 import Button from "@/components/ui/Button";
+import { useGlobalHooks } from "@/Hooks/globalHooks";
+import { IServerError } from "@/types/GlobalInterfaces";
+import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 
 const Markets = () => {
   const { data, isLoading } = useGetAllMarketsQuery({});
+  const { loading, setLoading } = useGlobalHooks();
+
+  const [toggleStatus] = useToggleMarketStatusMutation();
+
+  const handleToggle = async (id: number) => {
+    setLoading({ [id]: true });
+    try {
+      const rsp = await toggleStatus({ market_id: id });
+
+      if (rsp?.error) {
+        toast.error((rsp?.error as IServerError)?.data?.message);
+      } else {
+        toast.success(rsp?.data?.message);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading({ [id]: false });
+    } finally {
+      setLoading({ [id]: false });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -34,7 +61,7 @@ const Markets = () => {
       </header>
       <section>
         <ul className="grid grid-cols-4 gap-2">
-          {data?.data?.map(({ id, name, banner }) => (
+          {data?.data?.map(({ id, name, banner, status }) => (
             <li key={id} className="card flex flex-col justify-between p-2">
               <figure className="relative h-40 overflow-hidden rounded-lg">
                 <img
@@ -57,10 +84,13 @@ const Markets = () => {
                 </Button>
                 <Button
                   type="button"
-                  className="!bg-negative !px-1"
-                  loading={isLoading}
+                  className={
+                    status === "active" ? "!bg-negative !px-1" : "!px-1"
+                  }
+                  loading={loading[id]}
+                  onClick={() => handleToggle(id)}
                 >
-                  Delete
+                  {status === "active" ? "Deactivate" : "Activate"}
                 </Button>
 
                 <Button
