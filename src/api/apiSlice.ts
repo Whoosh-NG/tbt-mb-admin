@@ -9,8 +9,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
 const customBaseQuery = fetchBaseQuery({
-  baseUrl: "https://api.tbt.live.whooshing.xyz/api/v1",
-  // baseUrl: "https://tbt-agro.whooshing.xyz/api/v1",
+  // // baseUrl: "https://api.tbt.live.whooshing.xyz/api/v1",
+  baseUrl: "https://tbt-agro.whooshing.xyz/api/v1",
 
   prepareHeaders: (headers) => {
     // Get your token from wherever you have it stored
@@ -221,7 +221,7 @@ export const apiSLice = createApi({
     }),
 
     getAllMarkets: builder.query<{ data: MarketsRsp[] }, any>({
-      query: (params) => `/market/list?${queryBuilder(params)}`,
+      query: (params) => `/admin/market/list?${queryBuilder(params)}`,
       providesTags: [{ type: "Markets", id: "LIST" }],
     }),
 
@@ -242,6 +242,15 @@ export const apiSLice = createApi({
     updateMarkets: builder.mutation({
       query: (formData) => ({
         url: `/admin/market/update`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Markets", id: "LIST" }],
+    }),
+
+    toggleMarketStatus: builder.mutation({
+      query: (formData) => ({
+        url: `/admin/market/toggle-status`,
         method: "POST",
         body: formData,
       }),
@@ -570,6 +579,7 @@ export const {
   // ==== PRODUCTS START====
 
   // ==== MARKETS START====
+  useToggleMarketStatusMutation,
   useGetAllAgentsQuery,
   useUpdateAgentsQuery,
   useDeleteCategoryByIdMutation,
