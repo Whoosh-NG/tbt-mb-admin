@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 import axios from "axios";
 
-// const baseUrl = "https://api.tbt.live.whooshing.xyz/api/v1";
-const baseUrl = "https://tbt-agro.whooshing.xyz/api/v1";
+const baseUrl = "https://api.tbt.live.whooshing.xyz/api/v1";
+// const baseUrl = "https://tbt-agro.whooshing.xyz/api/v1";
 
 const baseAPI = axios.create({ baseURL: baseUrl });
 

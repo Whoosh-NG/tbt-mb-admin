@@ -9,8 +9,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
 const customBaseQuery = fetchBaseQuery({
-  // // baseUrl: "https://api.tbt.live.whooshing.xyz/api/v1",
-  baseUrl: "https://tbt-agro.whooshing.xyz/api/v1",
+  baseUrl: "https://api.tbt.live.whooshing.xyz/api/v1",
+  // baseUrl: "https://tbt-agro.whooshing.xyz/api/v1",
 
   prepareHeaders: (headers) => {
     // Get your token from wherever you have it stored
